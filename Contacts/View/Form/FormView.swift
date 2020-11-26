@@ -132,6 +132,7 @@ extension FormView: ConfigureView {
         imageView.image = UIImage(named: "userDefaultImage")
         imageView.layer.cornerRadius = 15
         imageView.layer.masksToBounds = true
+        imageView.isUserInteractionEnabled = true
         
         shadowView.backgroundColor = .black
         shadowView.layer.cornerRadius = 15

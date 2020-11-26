@@ -43,7 +43,7 @@ class FormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureView()
         // Verifica se é uma adição ou edição
 //        if contact != nil {
 //            if let image = contact.image as? UIImage {
@@ -136,11 +136,58 @@ class FormViewController: UIViewController {
         }
     }
     
-    @IBAction func imageButton(_ sender: Any) {
-        showAlertAction()
+    // MARK: - Actions and Alert
+    
+    func showActionSheet() {
+        let actionSheet = UIAlertController(title: nil, message: "Por favor, selecione de onde você quer a foto.", preferredStyle: .actionSheet)
+        // Opção Galeria
+        actionSheet.addAction(UIAlertAction(title: "Galeria", style: .default, handler: { _ in
+            self.selectedPhoto(sourceType: .photoLibrary)
+        }))
+        // Opção Câmera
+        actionSheet.addAction(UIAlertAction(title: "Câmera", style: .default, handler: { _ in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) { // Verifica se há camera disponivel no device
+                self.selectedPhoto(sourceType: .camera)
+            } else {
+                self.showAlert(with: "A câmera não está disponível!")
+            }
+        }))
+        // Se houver foto selecionada, mostra opção Limpar foto
+        if uiview.imageView.image != UIImage(named: "userDefaultImage") {
+            actionSheet.addAction(UIAlertAction(title: "Limpar foto", style: .default, handler: { _ in
+                self.uiview.imageView.image = UIImage(named: "userDefaultImage")
+            }))
+        }
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showAlert(with message: String) {
+        let alert = UIAlertController(title: "Desculpe", message: message, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alert.view.tintColor = UIColor(named: "second") // Cor texto do botão
+        alert.addAction(cancelButton)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: - Take Photo
+    
+    func selectedPhoto(sourceType: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
 
     // MARK: - Methods
+    
+    func configureView() {
+        uiview.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tappedPhoto(_:))))
+    }
+    
+    @objc func tappedPhoto(_ gesture: UITapGestureRecognizer) {
+        showActionSheet()
+    }
     
     // Faz a tela scrollar quando o teclado fica na frente do text field
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -169,56 +216,7 @@ class FormViewController: UIViewController {
         }
     }
     
-    // Estilo dos text fields
-    func bottomLineTextField(textField: UITextField) {
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0, y: textField.frame.height - 2, width: textField.frame.width, height: 2)
-        bottomLine.backgroundColor = UIColor.init(named: "second")?.cgColor
-        textField.borderStyle = .none
-        textField.layer.addSublayer(bottomLine)
-    }
     
-    func showAlertAction() {
-        let actionSheet = UIAlertController(title: "Image", message: "Please, select an image for the contact.", preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "Library", style: .default, handler: { (_) in
-            self.selectedImage(sourceType: .photoLibrary)
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_) in
-            let camera = UIImagePickerController.isSourceTypeAvailable(.camera) // Verifica se há camera disponivel no device
-            if camera {
-                self.selectedImage(sourceType: .camera)
-            } else {
-                self.showAlert(with: "Camera is not available!")
-            }
-        }))
-        
-        if self.imageContact.image != UIImage(named: "userDefaultImage") {
-            actionSheet.addAction(UIAlertAction(title: "Clear photo", style: .default, handler: { (_) in
-                self.imageContact.image = UIImage(named: "userDefaultImage")
-            }))
-        }
-
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        self.present(actionSheet, animated: true, completion: nil)
-    }
-    
-    func selectedImage(sourceType: UIImagePickerController.SourceType) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = sourceType
-        imagePicker.delegate = self
-        present(imagePicker, animated: true, completion: nil)
-    }
-    
-    func showAlert(with message: String) {
-        let alert = UIAlertController(title: "Sorry", message: message, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.view.tintColor = UIColor(named: "second") // Cor texto do botão
-        alert.addAction(cancelButton)
-        present(alert, animated: true, completion: nil)
-    }
     
     func toolbar() -> UIToolbar {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 47))
@@ -269,33 +267,22 @@ class FormViewController: UIViewController {
         alert.view.tintColor = UIColor(named: "second")
         present(alert, animated: true, completion: nil)
     }
-    
-    func imageContatctViewStyle() {
-        viewWithBorderAndShadow(self.viewWithBorderShadow, cornerRadius: 5.0)
-        if imageContact.image == nil {
-            self.imageContact.image = UIImage(named: "userDefaultImage")
-        }
-        self.imageContact.layer.cornerRadius = 5.0
-        self.imageContact.layer.masksToBounds = true
-    }
-    
-    func viewWithBorderAndShadow(_ vw: UIView, cornerRadius: CGFloat) {
-        vw.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        vw.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        vw.layer.shadowOpacity = 0.30
-        vw.layer.shadowRadius = 5.0
-        vw.layer.cornerRadius = cornerRadius
-    }
+
 }
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
 extension FormViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage { // A img selecionada fica dentro do dic info, é recuperada e convertida para UIImage
-            self.imageContact.image = image
+            uiview.imageView.image = image
             dismiss(animated: true, completion: nil)
         }
     }
 }
+
+
+
 
 
 extension FormViewController: UIPickerViewDelegate, UIPickerViewDataSource {
