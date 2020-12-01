@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsContactViewController: UIViewController {
+class DetailsViewController: UIViewController {
     
     var contact: Contact!
     let message = Message() // Usada para trabalhar com o SMS
@@ -19,23 +19,15 @@ class DetailsContactViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.imageContact.image = contact.image as? UIImage
+        self.imageContact.image = contact.photo as? UIImage
         self.nameLabel.text = contact.name
-        self.numberPhoneLabel.text = contact.phoneNumber
+        self.numberPhoneLabel.text = contact.phone
         self.emailLabel.text = contact.email
         self.addressLabel.text = contact.address
-        self.typeLabel.text = contact.type?.name
         self.imageContact.layer.cornerRadius = 5.0
         self.imageContact.layer.masksToBounds = true
         viewWithBorderAndShadow(viewDetails, cornerRadius: 20.0)
         viewWithBorderAndShadow(viewWithBorderShadow, cornerRadius: 5.0)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editSegue" {
-            let vc = segue.destination as! FormViewController
-            vc.contact = contact
-        }
     }
     
     // MARK: - IBOutlets
@@ -59,7 +51,7 @@ class DetailsContactViewController: UIViewController {
         alertAction()
     }
     @IBAction func tel(_ sender: Any) {
-        guard let number = contact.phoneNumber else { return }
+        guard let number = contact.phone else { return }
         // Faz ligação
         if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

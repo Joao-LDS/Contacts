@@ -17,7 +17,7 @@ class Message: NSObject, MFMessageComposeViewControllerDelegate {
     func configSMS(_ contact: Contact) -> MFMessageComposeViewController? {
         if MFMessageComposeViewController.canSendText() { // Verifica se o device pode enviar SMS
             let componentSMS = MFMessageComposeViewController()
-            guard let number = contact.phoneNumber else { return componentSMS}
+            guard let number = contact.phone else { return componentSMS}
             componentSMS.recipients = [number] // Passa o número para SMS
             componentSMS.messageComposeDelegate = self
             return componentSMS

@@ -9,10 +9,12 @@
 import UIKit
 
 enum PlaceHolder: String {
-    case Name, Phone, Email, Address, TypeOfContact
+    case Nome, Número, Email, Endereço, Grupo
 }
 
 class CustomTextField: UIView {
+    
+    // MARK: - Properties
     
     var placeHolder: PlaceHolder!
     
@@ -34,6 +36,8 @@ class CustomTextField: UIView {
         return view
     }()
     
+    // MARK: - Init
+    
     convenience init(placeHolder: PlaceHolder) {
         self.init(frame: .zero)
         self.placeHolder = placeHolder
@@ -49,6 +53,8 @@ class CustomTextField: UIView {
     }
     
 }
+
+// MARK: - ConfigureView
 
 extension CustomTextField: ConfigureView {
     
@@ -81,8 +87,8 @@ extension CustomTextField: ConfigureView {
     func additionalConfiguration() {
         backgroundColor = .white
         
-        textField.placeholder = placeHolder.rawValue
-        
+        textField.defaultTextAttributes = [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray]
+        textField.attributedPlaceholder = NSAttributedString(string: placeHolder.rawValue, attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
         imageView.image = UIImage(named: placeHolder.rawValue)
         
         lineView.backgroundColor = UIColor(named: "second")

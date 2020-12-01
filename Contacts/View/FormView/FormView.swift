@@ -10,6 +10,20 @@ import UIKit
 
 class FormView: UIView {
     
+    // MARK: - Properties
+    
+    lazy var backButton: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var backButtonImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var bottomView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -35,13 +49,13 @@ class FormView: UIView {
     }()
     
     lazy var nameTf: CustomTextField = {
-        let view = CustomTextField(placeHolder: .Name)
+        let view = CustomTextField(placeHolder: .Nome)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     lazy var phoneTf: CustomTextField = {
-        let view = CustomTextField(placeHolder: .Phone)
+        let view = CustomTextField(placeHolder: .Número)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -53,23 +67,25 @@ class FormView: UIView {
     }()
     
     lazy var addressTf: CustomTextField = {
-        let view = CustomTextField(placeHolder: .Address)
+        let view = CustomTextField(placeHolder: .Endereço)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var typeOfContactTf: CustomTextField = {
-        let view = CustomTextField(placeHolder: .TypeOfContact)
+    lazy var groupTypeButton: GroupButton = {
+        let view = GroupButton(type: .system)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    lazy var addButton: CustomButton = {
-        let view = CustomButton(title: "Add")
+    lazy var addButton: OkButton = {
+        let view = OkButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
@@ -81,8 +97,13 @@ class FormView: UIView {
     
 }
 
+// MARK: - ConfigureView
+
 extension FormView: ConfigureView {
+    
     func addComponents() {
+        backButton.addSubview(backButtonImageView)
+        addSubview(backButton)
         addSubview(bottomView)
         addSubview(shadowView)
         addSubview(imageView)
@@ -90,13 +111,23 @@ extension FormView: ConfigureView {
         stackView.addArrangedSubview(phoneTf)
         stackView.addArrangedSubview(emailTf)
         stackView.addArrangedSubview(addressTf)
-        stackView.addArrangedSubview(typeOfContactTf)
+        stackView.addArrangedSubview(groupTypeButton)
         addSubview(stackView)
         addSubview(addButton)
     }
     
     func addConstraints() {
         NSLayoutConstraint.activate([
+            backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            backButton.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            backButton.widthAnchor.constraint(equalToConstant: 50),
+            backButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            backButtonImageView.widthAnchor.constraint(equalToConstant: 40),
+            backButtonImageView.heightAnchor.constraint(equalToConstant: 40),
+            backButtonImageView.centerXAnchor.constraint(equalTo: backButton.centerXAnchor),
+            backButtonImageView.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+            
             imageView.widthAnchor.constraint(equalToConstant: 150),
             imageView.heightAnchor.constraint(equalToConstant: 150),
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -114,10 +145,9 @@ extension FormView: ConfigureView {
             
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            stackView.bottomAnchor.constraint(equalTo: addButton.topAnchor, constant: -30),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50),
             
-            addButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            addButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             addButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
         ])
     }
@@ -125,17 +155,22 @@ extension FormView: ConfigureView {
     func additionalConfiguration() {
         backgroundColor = UIColor(named: "second")
         
+        backButtonImageView.image = UIImage(named: "back_arrow")
+        backButtonImageView.shadow(shadowColor: UIColor.black.cgColor,
+                                   shadowRadius: 7,
+                                   shadowOpacity: 0.4)
+        
         bottomView.backgroundColor = .white
-        bottomView.layer.cornerRadius = 15
+        bottomView.layer.cornerRadius = 30
         bottomView.shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.5)
         
         imageView.image = UIImage(named: "userDefaultImage")
-        imageView.layer.cornerRadius = 15
+        imageView.layer.cornerRadius = 75
         imageView.layer.masksToBounds = true
         imageView.isUserInteractionEnabled = true
         
         shadowView.backgroundColor = .black
-        shadowView.layer.cornerRadius = 15
+        shadowView.layer.cornerRadius = 75
         shadowView.shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.5)
         
         stackView.spacing = 28

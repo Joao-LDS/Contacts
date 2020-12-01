@@ -10,6 +10,8 @@ import UIKit
 
 class ContactListView: UIView {
     
+    // MARK: - Properties
+    
     lazy var tableView: UITableView = {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +24,8 @@ class ContactListView: UIView {
         return view
     }()
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
@@ -33,7 +37,10 @@ class ContactListView: UIView {
     
 }
 
+// MARK: - ConfigureView
+
 extension ContactListView: ConfigureView {
+    
     func addComponents() {
         addSubview(tableView)
         addSubview(floatButton)
@@ -52,6 +59,8 @@ extension ContactListView: ConfigureView {
     }
     
     func additionalConfiguration() {
+        tableView.separatorStyle = .none
+        
         floatButton.imageview.image = UIImage(named: "plus")
     }
 }

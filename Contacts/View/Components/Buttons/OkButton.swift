@@ -8,18 +8,13 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+class OkButton: UIButton {
     
-    var title: String?
+    // MARK: - Init
     
-    convenience init(title: String) {
-        self.init(frame: .zero)
-        self.title = title
-        setupView()
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -28,19 +23,23 @@ class CustomButton: UIButton {
     
 }
 
-extension CustomButton: ConfigureView {
+// MARK: - ConfigureView
+
+extension OkButton: ConfigureView {
+    
     func addComponents() {}
     
     func addConstraints() {
         NSLayoutConstraint.activate([
-            heightAnchor.constraint(equalToConstant: 50)
+            heightAnchor.constraint(equalToConstant: 60),
+            widthAnchor.constraint(equalToConstant: 60),
         ])
     }
     
     func additionalConfiguration() {
-        backgroundColor = UIColor(named: "second")
-        setTitle(self.title, for: .normal)
+        setImage(UIImage(named: "okButton"), for: .normal)
         layer.cornerRadius = 8
+        shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.4)
     }
     
     
