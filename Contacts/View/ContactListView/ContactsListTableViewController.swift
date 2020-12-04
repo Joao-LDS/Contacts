@@ -90,6 +90,11 @@ extension ContactsListTableViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contact = viewModel.contacts[indexPath.row]
+        let viewModel = DetailsViewModel(contact: contact)
+        let controller = DetailsViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

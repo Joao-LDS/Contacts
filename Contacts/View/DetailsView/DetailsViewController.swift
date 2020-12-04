@@ -10,46 +10,66 @@ import UIKit
 
 class DetailsViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var contact: Contact!
     let message = Message() // Usada para trabalhar com o SMS
+    let viewModel: DetailsViewModel
+    var uiview: DetailsView
+    
+    // MARK: - Init
+    
+    init(viewModel: DetailsViewModel) {
+        self.viewModel = viewModel
+        self.uiview = DetailsView()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - View Life Cycle
+    
+    override func loadView() {
+        self.view = uiview
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.imageContact.image = contact.photo as? UIImage
-        self.nameLabel.text = contact.name
-        self.numberPhoneLabel.text = contact.phone
-        self.emailLabel.text = contact.email
-        self.addressLabel.text = contact.address
-        self.imageContact.layer.cornerRadius = 5.0
-        self.imageContact.layer.masksToBounds = true
-        viewWithBorderAndShadow(viewDetails, cornerRadius: 20.0)
-        viewWithBorderAndShadow(viewWithBorderShadow, cornerRadius: 5.0)
+    // MARK: - Functions
+    
+    func configureView() {
+        let contact = viewModel.contact
+        uiview.imageView.image = contact.photo as? UIImage
+        uiview.nameLabel.text = contact.name
+        let emptyString = ""
+        if contact.phone != emptyString {
+            uiview.createLabel(With: "Telefone: \(contact.phone!)")
+            uiview.callButton.isHidden = false
+            uiview.messageButton.isHidden = false
+        }
+        if contact.address != emptyString {
+            uiview.createLabel(With: "Endereço: \(contact.address!)")
+            uiview.localizeButton.isHidden = false
+        }
+        if contact.email != emptyString {
+            uiview.createLabel(With: "E-mail: \(contact.email!)")
+            uiview.messageButton.isHidden = false
+        }
+        if let groupName = contact.group?.name, groupName != emptyString {
+            uiview.createLabel(With: "Grupo: \(groupName)")
+        }
+        
+        uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
     }
     
-    // MARK: - IBOutlets
-    @IBOutlet weak var imageContact: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var numberPhoneLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var viewDetails: UIView!
-    @IBOutlet weak var viewWithBorderShadow: UIView!
-    @IBOutlet weak var viewName: UIView!
-    @IBOutlet weak var viewNumber: UIView!
-    @IBOutlet weak var viewEmail: UIView!
-    @IBOutlet weak var viewAddress: UIView!
-    @IBOutlet weak var viewType: UIView!
     
+    // MARK: - Selectors
     
-    // MARK: - IBAction
-    @IBAction func mapButton(_ sender: Any) {
-        alertAction()
-    }
     @IBAction func tel(_ sender: Any) {
         guard let number = contact.phone else { return }
         // Faz ligação
@@ -64,7 +84,7 @@ class DetailsViewController: UIViewController {
         }
     }
     
-    func alertAction() {
+    func showActionSheet() {
         let alert = UIAlertController(title: "Ok", message: "Select an option:", preferredStyle: .actionSheet)
         let waze = UIAlertAction(title: "Waze", style: .default) { (alert) in
             self.waze()
@@ -110,13 +130,10 @@ class DetailsViewController: UIViewController {
         map.contact = contact
         self.navigationController?.pushViewController(map, animated: true)
     }
-
     
-    func viewWithBorderAndShadow(_ vw: UIView, cornerRadius: CGFloat) {
-        vw.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        vw.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        vw.layer.shadowOpacity = 0.30
-        vw.layer.shadowRadius = 5.0
-        vw.layer.cornerRadius = cornerRadius
+    // MARK: - Selectors
+    
+    @objc func tappedBack() {
+        dismiss(animated: true)
     }
 }

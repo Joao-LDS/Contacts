@@ -139,7 +139,7 @@ extension FormView: ConfigureView {
             shadowView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
             
             bottomView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bottomView.topAnchor.constraint(equalTo: imageView.centerYAnchor),
+            bottomView.topAnchor.constraint(equalTo: imageView.centerYAnchor, constant: -30),
             bottomView.trailingAnchor.constraint(equalTo: trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 50),
             

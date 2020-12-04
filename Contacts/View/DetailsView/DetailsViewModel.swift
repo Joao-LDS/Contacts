@@ -7,3 +7,29 @@
 //
 
 import Foundation
+
+class DetailsViewModel {
+    
+    var contact: Contact
+    var dictContact: [String: Any] {
+        return contact.convertObjectToDictionary(contact: contact)
+    }
+    
+    init(contact: Contact) {
+        self.contact = contact
+    }
+    
+    func numberOfRows() -> Int {
+        var number = 0
+        for (key, _) in dictContact {
+            if let value = dictContact[key] as? String, value != "" {
+                number += 1
+            }
+        }
+        return number
+    }
+    
+    
+    
+    
+}
