@@ -50,6 +50,13 @@ class FormViewController: UIViewController {
     // MARK: - Functions
     
     func configureView() {
+        if viewModel.contact != nil {
+            let contact = viewModel.contact
+            self.uiview.nameTf.textField.text = contact?.name
+            self.uiview.phoneTf.textField.text = contact?.phone
+            self.uiview.emailTf.textField.text = contact?.email
+            self.uiview.addressTf.textField.text = contact?.address
+        }
         uiview.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tappedPhoto(_:))))
         uiview.addButton.addTarget(self, action: #selector(self.addContact), for: .touchUpInside)
         uiview.groupTypeButton.addTarget(self, action: #selector(self.tappedGroup), for: .touchUpInside)

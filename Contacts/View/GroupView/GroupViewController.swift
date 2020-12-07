@@ -34,6 +34,7 @@ class GroupViewController: UIViewController {
         setupTableView()
         configureView()
         viewModel.loadGroups()
+        uiview.nameGroupTf.textField.delegate = self
     }
     
     override func loadView() {
@@ -92,6 +93,18 @@ extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.selectedGroup = viewModel.groups[indexPath.row]
         dismiss(animated: true)
+    }
+    
+}
+
+// MARK: - UITextFieldDelegate
+
+extension GroupViewController: UITextFieldDelegate {
+    
+    // Desaparece o teclado quando clicar em return
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

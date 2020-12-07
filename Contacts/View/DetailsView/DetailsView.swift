@@ -97,7 +97,16 @@ class DetailsView: UIView {
     
     // MARK: - Functions
     
-    func createLabel(With text: String) {
+    func createView(WithText text: String) {
+        let view: UIView = {
+            let view = UIView()
+            view.shadow(shadowColor: UIColor(named: "second")!.cgColor, shadowRadius: 7, shadowOpacity: 0.4)
+            view.layer.cornerRadius = 10
+            view.backgroundColor = .white
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
+        
         let label: UILabel = {
             let view = UILabel()
             view.font = UIFont(name: "Avenir", size: 20)
@@ -106,13 +115,24 @@ class DetailsView: UIView {
             return view
         }()
         label.text = text
-        addLabelInStackview(label)
+        view.addSubview(label)
+        addViewInStackview(view, label)
     }
     
-    func addLabelInStackview(_ label: UILabel) {
-        stackView.addArrangedSubview(label)
+    func addViewInStackview(_ view: UIView, _ label: UILabel) {
+        view.addSubview(label)
+        stackView.addArrangedSubview(view)
+        addConstraintsIn(view, label)
     }
     
+    func addConstraintsIn(_ view: UIView, _ label: UILabel) {
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            view.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
 }
 
 // MARK: - ConfigureView
@@ -199,7 +219,7 @@ extension DetailsView: ConfigureView {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
-        stackView.spacing = 26
+        stackView.spacing = 12
         
         stackViewButtons.axis = .horizontal
         stackViewButtons.distribution = .fill
