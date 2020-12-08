@@ -24,6 +24,12 @@ class DetailsViewModel {
         self.contact = contact
     }
     
+    func call() {
+        guard let phone = contact.phone,
+            let url = URL(string: "tel://\(phone)") else { return }
+        delegate?.uiapplicationOpen(url)
+    }
+    
     func sms() {
         let message = Message()
         

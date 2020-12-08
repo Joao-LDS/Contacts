@@ -9,7 +9,7 @@
 import UIKit
 
 enum ActionSheetType {
-    case localize, callOrSMS
+    case localize, call
 }
 
 class DetailsViewController: UIViewController {
@@ -72,18 +72,14 @@ class DetailsViewController: UIViewController {
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
         uiview.editButton.addTarget(self, action: #selector(self.tappedEdit), for: .touchUpInside)
         uiview.localizeButton.addTarget(self, action: #selector(self.tappedLocalize), for: .touchUpInside)
-        uiview.callButton.addTarget(self, action: #selector(self.tappedCall), for: .touchUpInside)
+        uiview.callButton.addTarget(self, action: #selector(self.call), for: .touchUpInside)
     }
     
     
     // MARK: - Selectors
     
-    @IBAction func tel(_ sender: Any) {
-        guard let number = contact.phone else { return }
-        // Faz ligação
-        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
+    @objc func call() {
+        viewModel.call()
     }
     
     @IBAction func sms(_ sender: Any) {
@@ -97,8 +93,8 @@ class DetailsViewController: UIViewController {
         switch type {
         case .localize:
             present(actionSheetForLocalize(), animated: true)
-        case .callOrSMS:
-            present(actionSheetForCallOrSMS(), animated: true)
+        case .call:
+            present(actionSheetForCall(), animated: true)
         }
     }
     
@@ -122,21 +118,21 @@ class DetailsViewController: UIViewController {
         return actionSheet
     }
     
-    func actionSheetForCallOrSMS() -> UIAlertController {
+    func actionSheetForCall() -> UIAlertController {
         var actions: [UIAlertAction] = []
-        
+
         actions.append(UIAlertAction(title: "Ligar", style: .default) { _ in
-            
+
         })
         actions.append(UIAlertAction(title: "SMS", style: .default) { _ in
-            
+
         })
-        
+
         let actionSheet = UIAlertController().create(title: nil,
                                                      message: "Selecione uma opção",
                                                      preferredStyle: .actionSheet,
                                                      actions: actions)
-        
+
         return actionSheet
     }
     
@@ -160,10 +156,6 @@ class DetailsViewController: UIViewController {
     
     @objc func tappedLocalize() {
         showActionSheet(.localize)
-    }
-    
-    @objc func tappedCall() {
-        showActionSheet(.callOrSMS)
     }
 }
 
