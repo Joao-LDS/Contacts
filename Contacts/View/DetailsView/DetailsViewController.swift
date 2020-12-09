@@ -49,9 +49,11 @@ class DetailsViewController: UIViewController {
     
     func configureView() {
         let contact = viewModel.contact
+        let emptyString = ""
+        
         uiview.imageView.image = contact.photo as? UIImage
         uiview.nameLabel.text = contact.name
-        let emptyString = ""
+        
         if contact.phone != emptyString {
             uiview.createView(WithText: "\(contact.phone!)")
             uiview.callButton.isHidden = false
@@ -72,33 +74,14 @@ class DetailsViewController: UIViewController {
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
         uiview.editButton.addTarget(self, action: #selector(self.tappedEdit), for: .touchUpInside)
         uiview.localizeButton.addTarget(self, action: #selector(self.tappedLocalize), for: .touchUpInside)
-        uiview.callButton.addTarget(self, action: #selector(self.call), for: .touchUpInside)
+        uiview.callButton.addTarget(self, action: #selector(self.tappedCall), for: .touchUpInside)
+        uiview.messageButton.addTarget(self, action: #selector(self.tappedSMS), for: .touchUpInside)
     }
     
     
-    // MARK: - Selectors
-    
-    @objc func call() {
-        viewModel.call()
-    }
-    
-    @IBAction func sms(_ sender: Any) {
-        if let componentSMS = message.configSMS(contact) {
-            componentSMS.messageComposeDelegate = message // Delegate de componentSMS será a classa Message()
-            present(componentSMS, animated: true, completion: nil)
-        }
-    }
-    
-    func showActionSheet(_ type: ActionSheetType) {
-        switch type {
-        case .localize:
-            present(actionSheetForLocalize(), animated: true)
-        case .call:
-            present(actionSheetForCall(), animated: true)
-        }
-    }
-    
-    func actionSheetForLocalize() -> UIAlertController {
+    // MARK: - Functions
+
+    func showActionSheetForLocalize() {
         var actions: [UIAlertAction] = []
         
         if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
@@ -115,25 +98,7 @@ class DetailsViewController: UIViewController {
                                                      message: "Selecione uma opção",
                                                      preferredStyle: .actionSheet,
                                                      actions: actions)
-        return actionSheet
-    }
-    
-    func actionSheetForCall() -> UIAlertController {
-        var actions: [UIAlertAction] = []
-
-        actions.append(UIAlertAction(title: "Ligar", style: .default) { _ in
-
-        })
-        actions.append(UIAlertAction(title: "SMS", style: .default) { _ in
-
-        })
-
-        let actionSheet = UIAlertController().create(title: nil,
-                                                     message: "Selecione uma opção",
-                                                     preferredStyle: .actionSheet,
-                                                     actions: actions)
-
-        return actionSheet
+        present(actionSheet, animated: true)
     }
     
     func maps() {
@@ -155,12 +120,26 @@ class DetailsViewController: UIViewController {
     }
     
     @objc func tappedLocalize() {
-        showActionSheet(.localize)
+        showActionSheetForLocalize()
     }
+    
+    @objc func tappedCall() {
+        viewModel.call()
+    }
+    
+    @objc func tappedSMS() {
+        viewModel.sms()
+    }
+    
 }
 
 extension DetailsViewController: DetailsViewModelDelegate {
     func uiapplicationOpen(_ url: URL) {
         UIApplication.shared.open(url, options: [:])
     }
+    
+    func presentView(controller: UIViewController) {
+        present(controller, animated: true)
+    }
+    
 }

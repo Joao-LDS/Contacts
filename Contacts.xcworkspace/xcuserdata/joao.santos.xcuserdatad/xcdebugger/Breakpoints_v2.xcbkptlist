@@ -81,7 +81,7 @@
             startingLineNumber = "15"
             endingLineNumber = "15"
             landmarkName = "FormViewModel"
-            landmarkType = "3">
+            landmarkType = "14">
             <Locations>
                <Location
                   uuid = "B27586DC-3DD6-4C74-8078-8B18D95442D2 - a30230aef4fb8dec"
@@ -129,7 +129,7 @@
             startingLineNumber = "21"
             endingLineNumber = "21"
             landmarkName = "FormViewModel"
-            landmarkType = "3">
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,8 +174,8 @@
             filePath = "Contacts/View/DetailsView/DetailsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "waze()"
             landmarkType = "7">
          </BreakpointContent>

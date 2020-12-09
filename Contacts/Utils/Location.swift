@@ -10,9 +10,6 @@ import UIKit
 import CoreLocation
 
 class Location: NSObject {
-    
-    // MARK: - Methods
-    
     func convertAddressToCordinate(address: String, local:@escaping(_ local:CLPlacemark) -> Void) {
         // Converte um endereço de formato string para cordenada
         let convert = CLGeocoder()

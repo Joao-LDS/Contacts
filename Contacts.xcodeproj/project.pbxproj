@@ -169,16 +169,14 @@
 		79AEDA9123F81AB300B4422A /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				E887F2D625811962005482F1 /* Support */,
 				E826139B256EC25C008C213C /* Utils */,
 				79AEDAC123F82E8400B4422A /* Models */,
 				79AEDAC623F83BAD00B4422A /* View */,
-				79AEDAC023F81D4C00B4422A /* Controllers */,
-				79AEDA9223F81AB300B4422A /* AppDelegate.swift */,
 				79AEDA9923F81AB600B4422A /* Assets.xcassets */,
 				79AEDA9B23F81AB600B4422A /* LaunchScreen.storyboard */,
 				79AEDA9E23F81AB600B4422A /* Info.plist */,
 				E8261397256EA90A008C213C /* GoogleService-Info.plist */,
-				E88E652C257042DC0072C45C /* CoreDataStack.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -201,20 +199,10 @@
 			path = ContactsUITests;
 			sourceTree = "<group>";
 		};
-		79AEDAC023F81D4C00B4422A /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				E86E3FA424450A7D00D03AA5 /* MapViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		79AEDAC123F82E8400B4422A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E84DCA1B2435270A00A9EDF4 /* Contacts.xcdatamodeld */,
-				E8631D4F244E1B8F00E8A230 /* Location.swift */,
-				E869711C244A23AA008A29FC /* Message.swift */,
 				E8E3AC4B25781D9700510F8D /* Contact.swift */,
 			);
 			path = Models;
@@ -225,6 +213,7 @@
 			children = (
 				E826139E256EC376008C213C /* ContactListView */,
 				E82613A6256EEF69008C213C /* FormView */,
+				E887F2D7258119C5005482F1 /* MapView */,
 				E81FCCD925712EC000059531 /* DetailsView */,
 				E81FCCE12571799B00059531 /* GroupView */,
 				E82613A2256ED291008C213C /* Components */,
@@ -268,6 +257,7 @@
 		E826139B256EC25C008C213C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E8631D4F244E1B8F00E8A230 /* Location.swift */,
 				E826139C256EC269008C213C /* ConfigureView.swift */,
 				E88E652A25700FA80072C45C /* UIView+Extension.swift */,
 			);
@@ -296,6 +286,7 @@
 		E82613A2256ED291008C213C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E887F2D5258118C4005482F1 /* Message */,
 				E8A5993E2575BB8A00884F3F /* Alert */,
 				E88E6525256FD80C0072C45C /* TextFields */,
 				E82613A3256ED2A1008C213C /* Buttons */,
@@ -322,6 +313,31 @@
 				E82613A9256EEF8A008C213C /* FormViewModel.swift */,
 			);
 			path = FormView;
+			sourceTree = "<group>";
+		};
+		E887F2D5258118C4005482F1 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				E869711C244A23AA008A29FC /* Message.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		E887F2D625811962005482F1 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				79AEDA9223F81AB300B4422A /* AppDelegate.swift */,
+				E88E652C257042DC0072C45C /* CoreDataStack.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E887F2D7258119C5005482F1 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				E86E3FA424450A7D00D03AA5 /* MapViewController.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		E88E6525256FD80C0072C45C /* TextFields */ = {

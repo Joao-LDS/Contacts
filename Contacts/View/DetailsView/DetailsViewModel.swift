@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol DetailsViewModelDelegate {
     func uiapplicationOpen(_ url: URL)
+    func presentView(controller: UIViewController)
 }
 
 class DetailsViewModel {
@@ -32,7 +34,9 @@ class DetailsViewModel {
     
     func sms() {
         let message = Message()
-        
+        if let component = message.configSMS(contact.phone!) {
+            delegate?.presentView(controller: component)
+        }
     }
     
     func waze() {

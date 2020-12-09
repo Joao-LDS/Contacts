@@ -11,14 +11,11 @@ import MessageUI
 
 class Message: NSObject, MFMessageComposeViewControllerDelegate {
 
-    // MARK: - Methods
-    
     // Exibe o componente na tela do app
-    func configSMS(_ contact: Contact) -> MFMessageComposeViewController? {
+    func configSMS(_ phone: String) -> MFMessageComposeViewController? {
         if MFMessageComposeViewController.canSendText() { // Verifica se o device pode enviar SMS
             let componentSMS = MFMessageComposeViewController()
-            guard let number = contact.phone else { return componentSMS}
-            componentSMS.recipients = [number] // Passa o número para SMS
+            componentSMS.recipients = [phone] // Passa o número para SMS
             componentSMS.messageComposeDelegate = self
             return componentSMS
         } else {
