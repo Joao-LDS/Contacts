@@ -37,12 +37,13 @@
 		E8631D50244E1B8F00E8A230 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8631D4F244E1B8F00E8A230 /* Location.swift */; };
 		E869711D244A23AA008A29FC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869711C244A23AA008A29FC /* Message.swift */; };
 		E86E3FA524450A7D00D03AA5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E3FA424450A7D00D03AA5 /* MapViewController.swift */; };
+		E887F2D92581493C005482F1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887F2D82581493C005482F1 /* MapView.swift */; };
+		E887F2DB25814946005482F1 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887F2DA25814946005482F1 /* MapViewModel.swift */; };
 		E88E6527256FD8280072C45C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E6526256FD8280072C45C /* CustomTextField.swift */; };
 		E88E6529256FF7090072C45C /* OkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E6528256FF7090072C45C /* OkButton.swift */; };
 		E88E652B25700FA80072C45C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E652A25700FA80072C45C /* UIView+Extension.swift */; };
 		E88E652D257042DC0072C45C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E652C257042DC0072C45C /* CoreDataStack.swift */; };
 		E8A599402575BBE500884F3F /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5993F2575BBE500884F3F /* UIAlertController+Extensions.swift */; };
-		E8E3AC4C25781D9700510F8D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E3AC4B25781D9700510F8D /* Contact.swift */; };
 		E8E5AF492448D96700CF91C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E5AF482448D96700CF91C0 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,12 +107,13 @@
 		E8631D4F244E1B8F00E8A230 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E869711C244A23AA008A29FC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E86E3FA424450A7D00D03AA5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E887F2D82581493C005482F1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E887F2DA25814946005482F1 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		E88E6526256FD8280072C45C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		E88E6528256FF7090072C45C /* OkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkButton.swift; sourceTree = "<group>"; };
 		E88E652A25700FA80072C45C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E88E652C257042DC0072C45C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E8A5993F2575BBE500884F3F /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
-		E8E3AC4B25781D9700510F8D /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		E8E5AF482448D96700CF91C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -203,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				E84DCA1B2435270A00A9EDF4 /* Contacts.xcdatamodeld */,
-				E8E3AC4B25781D9700510F8D /* Contact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -336,6 +337,8 @@
 			isa = PBXGroup;
 			children = (
 				E86E3FA424450A7D00D03AA5 /* MapViewController.swift */,
+				E887F2D82581493C005482F1 /* MapView.swift */,
+				E887F2DA25814946005482F1 /* MapViewModel.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -613,7 +616,6 @@
 				E8A599402575BBE500884F3F /* UIAlertController+Extensions.swift in Sources */,
 				E88E6529256FF7090072C45C /* OkButton.swift in Sources */,
 				E81FCCE5257179BF00059531 /* GroupViewController.swift in Sources */,
-				E8E3AC4C25781D9700510F8D /* Contact.swift in Sources */,
 				E826139D256EC269008C213C /* ConfigureView.swift in Sources */,
 				79AEDA9523F81AB400B4422A /* FormViewController.swift in Sources */,
 				E8631D50244E1B8F00E8A230 /* Location.swift in Sources */,
@@ -624,10 +626,12 @@
 				E88E6527256FD8280072C45C /* CustomTextField.swift in Sources */,
 				E81FCCDC2571319D00059531 /* DetailsViewModel.swift in Sources */,
 				E82613A8256EEF80008C213C /* FormView.swift in Sources */,
+				E887F2DB25814946005482F1 /* MapViewModel.swift in Sources */,
 				79AEDA9323F81AB400B4422A /* AppDelegate.swift in Sources */,
 				E81FCCE92571804800059531 /* GroupTableViewCell.swift in Sources */,
 				E86E3FA524450A7D00D03AA5 /* MapViewController.swift in Sources */,
 				E869711D244A23AA008A29FC /* Message.swift in Sources */,
+				E887F2D92581493C005482F1 /* MapView.swift in Sources */,
 				798FD6D82402BCB9003F1D81 /* ContactTableViewCell.swift in Sources */,
 				E81FCCDE257131BB00059531 /* DetailsView.swift in Sources */,
 				E84DCA1D2435270A00A9EDF4 /* Contacts.xcdatamodeld in Sources */,

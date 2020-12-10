@@ -18,9 +18,6 @@ class DetailsViewModel {
     
     var delegate: DetailsViewModelDelegate?
     var contact: Contact
-    var dictContact: [String: Any] {
-        return contact.convertObjectToDictionary(contact: contact)
-    }
     
     init(contact: Contact) {
         self.contact = contact
@@ -32,7 +29,7 @@ class DetailsViewModel {
         delegate?.uiapplicationOpen(url)
     }
     
-    func sms() {
+    func SMS() {
         let message = Message()
         if let component = message.configSMS(contact.phone!) {
             delegate?.presentView(controller: component)
@@ -41,12 +38,10 @@ class DetailsViewModel {
     
     func waze() {
         if let address = contact.address, address != "" {
-            Location().convertAddressToCordinate(address: address) { (foundLocation) in
+            Location().convertAddressToCordinate(address: address) { foundLocation in
                 // Converte as coordenadas em String
                 let latitude = String(describing: foundLocation.location!.coordinate.latitude)
                 let longitude = String(describing: foundLocation.location!.coordinate.longitude)
-                
-                print("\(latitude), \(longitude)")
                 
                 // Cria URL para abrir o waze
                 let url = URL(string: "waze://?ll=\(latitude),\(longitude)&navigate=yes")! // url com as coordenadas

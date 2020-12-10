@@ -12,14 +12,8 @@ class FormView: UIView {
     
     // MARK: - Properties
     
-    lazy var backButton: UIButton = {
-        let view = UIButton()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var backButtonImageView: UIImageView = {
-        let view = UIImageView()
+    lazy var backButton: FloatButton = {
+        let view = FloatButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -102,7 +96,6 @@ class FormView: UIView {
 extension FormView: ConfigureView {
     
     func addComponents() {
-        backButton.addSubview(backButtonImageView)
         addSubview(backButton)
         addSubview(bottomView)
         addSubview(shadowView)
@@ -119,18 +112,11 @@ extension FormView: ConfigureView {
     func addConstraints() {
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            backButton.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            backButton.widthAnchor.constraint(equalToConstant: 50),
-            backButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            backButtonImageView.widthAnchor.constraint(equalToConstant: 40),
-            backButtonImageView.heightAnchor.constraint(equalToConstant: 40),
-            backButtonImageView.centerXAnchor.constraint(equalTo: backButton.centerXAnchor),
-            backButtonImageView.centerYAnchor.constraint(equalTo: backButton.centerYAnchor),
+            backButton.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 20),
             
             imageView.widthAnchor.constraint(equalToConstant: 150),
             imageView.heightAnchor.constraint(equalToConstant: 150),
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 50),
+            imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 50),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             shadowView.widthAnchor.constraint(equalToConstant: 150),
@@ -148,17 +134,15 @@ extension FormView: ConfigureView {
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50),
             
             addButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            addButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
+            addButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -12)
         ])
     }
     
     func additionalConfiguration() {
         backgroundColor = UIColor(named: "second")
         
-        backButtonImageView.image = UIImage(named: "back_arrow")
-        backButtonImageView.shadow(shadowColor: UIColor.black.cgColor,
-                                   shadowRadius: 7,
-                                   shadowOpacity: 0.4)
+        backButton.imageview.image = UIImage(named: "back_arrow")
+        backButton.blackShadowColor()
         
         bottomView.backgroundColor = .white
         bottomView.layer.cornerRadius = 30

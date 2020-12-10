@@ -7,10 +7,7 @@
 //
 
 import UIKit
-
-enum ActionSheetType {
-    case localize, call
-}
+import MessageUI
 
 class DetailsViewController: UIViewController {
     
@@ -75,7 +72,7 @@ class DetailsViewController: UIViewController {
         uiview.editButton.addTarget(self, action: #selector(self.tappedEdit), for: .touchUpInside)
         uiview.localizeButton.addTarget(self, action: #selector(self.tappedLocalize), for: .touchUpInside)
         uiview.callButton.addTarget(self, action: #selector(self.tappedCall), for: .touchUpInside)
-        uiview.messageButton.addTarget(self, action: #selector(self.tappedSMS), for: .touchUpInside)
+        uiview.messageButton.addTarget(self, action: #selector(self.tappedMessage), for: .touchUpInside)
     }
     
     
@@ -85,14 +82,15 @@ class DetailsViewController: UIViewController {
         var actions: [UIAlertAction] = []
         
         if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
-            actions.append(UIAlertAction(title: "Waze", style: .default) { (alert) in
+            actions.append(UIAlertAction(title: "Waze", style: .default) { _ in
                 self.viewModel.waze()
             })
         }
-        actions.append(UIAlertAction(title: "Maps", style: .default) { (map) in
-            self.maps()
+        actions.append(UIAlertAction(title: "Maps", style: .default) { _ in
+            let viewModel = MapViewModel(address: self.viewModel.contact.address!)
+            let controller = MapViewController(viewModel: viewModel)
+            self.present(controller, animated: true)
         })
-        actions.append(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         let actionSheet = UIAlertController().create(title: nil,
                                                      message: "Selecione uma opção",
@@ -101,10 +99,38 @@ class DetailsViewController: UIViewController {
         present(actionSheet, animated: true)
     }
     
-    func maps() {
-        let map = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "map") as! MapViewController
-        map.contact = contact
-        self.navigationController?.pushViewController(map, animated: true)
+    func showActionSheetForMessage() {
+        let contact = viewModel.contact
+        let emptyString = ""
+        var actions: [UIAlertAction] = []
+        
+        if contact.phone != emptyString {
+            actions.append(UIAlertAction(title: "SMS", style: .default) { _ in
+                self.viewModel.SMS()
+            })
+        }
+        
+        if contact.email != emptyString {
+            actions.append(UIAlertAction(title: "E-mail", style: .default) { _ in
+                let mailController = self.configureMail()
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailController, animated: true)
+                }
+            })
+        }
+        
+        let actionSheet = UIAlertController().create(title: nil,
+                                                     message: "Selecione uma opção",
+                                                     preferredStyle: .actionSheet,
+                                                     actions: actions)
+        present(actionSheet, animated: true)
+    }
+    
+    func configureMail() -> MFMailComposeViewController {
+        let controller = MFMailComposeViewController()
+        controller.mailComposeDelegate = self
+        controller.setToRecipients([self.viewModel.contact.email!])
+        return controller
     }
     
     // MARK: - Selectors
@@ -127,8 +153,8 @@ class DetailsViewController: UIViewController {
         viewModel.call()
     }
     
-    @objc func tappedSMS() {
-        viewModel.sms()
+    @objc func tappedMessage() {
+        showActionSheetForMessage()
     }
     
 }
@@ -141,5 +167,10 @@ extension DetailsViewController: DetailsViewModelDelegate {
     func presentView(controller: UIViewController) {
         present(controller, animated: true)
     }
-    
+}
+
+extension DetailsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
 }

@@ -35,21 +35,18 @@ class FormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        
+        configureObserverForKeyBoard()
+    }
+
+    // MARK: - Functions
+    
+    func configureView() {
         // Delegate UITextFieldDelegate
         self.uiview.nameTf.textField.delegate = self
         self.uiview.phoneTf.textField.delegate = self
         self.uiview.emailTf.textField.delegate = self
         self.uiview.addressTf.textField.delegate = self
         
-        // Observador para o teclado, fica monitorando quando o teclado tem alguma mudança
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-    }
-
-    // MARK: - Functions
-    
-    func configureView() {
         if viewModel.contact != nil {
             let contact = viewModel.contact
             self.uiview.nameTf.textField.text = contact?.name
@@ -61,6 +58,12 @@ class FormViewController: UIViewController {
         uiview.addButton.addTarget(self, action: #selector(self.addContact), for: .touchUpInside)
         uiview.groupTypeButton.addTarget(self, action: #selector(self.tappedGroup), for: .touchUpInside)
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
+    }
+    
+    func configureObserverForKeyBoard() {
+        // Observador para o teclado, fica monitorando quando o teclado tem alguma mudança
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     // MARK: - Functions to Actions and Alert
