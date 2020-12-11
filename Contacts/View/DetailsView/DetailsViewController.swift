@@ -38,8 +38,13 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
         viewModel.delegate = self
+        configureView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        configureView()
     }
     
     // MARK: - Functions
@@ -52,20 +57,24 @@ class DetailsViewController: UIViewController {
         uiview.nameLabel.text = contact.name
         
         if contact.phone != emptyString {
-            uiview.createView(WithText: "\(contact.phone!)")
+            uiview.phoneView.label.text = contact.phone!
+            uiview.phoneView.isHidden = false
             uiview.callButton.isHidden = false
             uiview.messageButton.isHidden = false
         }
         if contact.address != emptyString {
-            uiview.createView(WithText: "\(contact.address!)")
+            uiview.addressView.label.text = contact.address
+            uiview.addressView.isHidden = false
             uiview.localizeButton.isHidden = false
         }
         if contact.email != emptyString {
-            uiview.createView(WithText: "\(contact.email!)")
+            uiview.emailView.label.text = contact.email
+            uiview.emailView.isHidden = false
             uiview.messageButton.isHidden = false
         }
         if let groupName = contact.group?.name, groupName != emptyString {
-            uiview.createView(WithText: "\(groupName)")
+            uiview.groupView.label.text = groupName
+            uiview.groupView.isHidden = false
         }
         
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
@@ -142,6 +151,7 @@ class DetailsViewController: UIViewController {
     @objc func tappedEdit() {
         let viewModel = FormViewModel(contact: self.viewModel.contact)
         let controller = FormViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
     }
     

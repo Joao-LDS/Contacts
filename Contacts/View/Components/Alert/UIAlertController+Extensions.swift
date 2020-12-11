@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum AvenirFont: String {
-    case Avenir = "Avenir"
-    case AvenirHeavy = "Avenir-Heavy"
-}
-
 extension UIAlertController {
 
     func create(title: String?,
@@ -20,9 +15,8 @@ extension UIAlertController {
                 preferredStyle: UIAlertController.Style, actions: [UIAlertAction]?) -> UIAlertController {
         
         let alert = UIAlertController(title: "", message: "", preferredStyle: preferredStyle)
-       
-        alert.setValue(styleText(title, .AvenirHeavy, 20), forKey: "attributedTitle")
-        alert.setValue(styleText(message, .Avenir, 18), forKey: "attributedMessage")
+        alert.setValue(title?.styleText(.AvenirHeavy, 18), forKey: "attributedTitle")
+        alert.setValue(message.styleText(.Avenir, 18), forKey: "attributedMessage")
         alert.view.tintColor = UIColor(named: "second")
         
         let titleAction = preferredStyle == .alert ? "Ok" : "Cancelar"
@@ -35,12 +29,6 @@ extension UIAlertController {
         alert.addAction(UIAlertAction(title: titleAction, style: .cancel))
         
         return alert
-    }
-    
-    private func styleText(_ text: String?,_ font: AvenirFont,_ size: CGFloat) -> NSAttributedString {
-        return NSAttributedString(string: text ?? "",
-                                  attributes: [.font: UIFont(name: font.rawValue, size: size)!,
-                                               .foregroundColor: UIColor.systemGray])
     }
     
 }

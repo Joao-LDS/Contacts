@@ -42,6 +42,30 @@ class DetailsView: UIView {
         return view
     }()
     
+    lazy var phoneView: ViewDetail = {
+        let view = ViewDetail()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var emailView: ViewDetail = {
+        let view = ViewDetail()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var addressView: ViewDetail = {
+        let view = ViewDetail()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var groupView: ViewDetail = {
+        let view = ViewDetail()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var stackView: UIStackView = {
         let view = UIStackView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -89,44 +113,6 @@ class DetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Functions
-    
-    func createView(WithText text: String) {
-        let view: UIView = {
-            let view = UIView()
-            view.shadow(shadowColor: UIColor(named: "second")!.cgColor, shadowRadius: 7, shadowOpacity: 0.4)
-            view.layer.cornerRadius = 10
-            view.backgroundColor = .white
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
-        
-        let label: UILabel = {
-            let view = UILabel()
-            view.font = UIFont(name: "Avenir", size: 20)
-            view.textColor = .systemGray
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
-        label.text = text
-        view.addSubview(label)
-        addViewInStackview(view, label)
-    }
-    
-    func addViewInStackview(_ view: UIView, _ label: UILabel) {
-        view.addSubview(label)
-        stackView.addArrangedSubview(view)
-        addConstraintsIn(view, label)
-    }
-    
-    func addConstraintsIn(_ view: UIView, _ label: UILabel) {
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            view.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
 }
 
 // MARK: - ConfigureView
@@ -139,6 +125,10 @@ extension DetailsView: ConfigureView {
         addSubview(shadowView)
         addSubview(imageView)
         addSubview(nameLabel)
+        stackView.addArrangedSubview(phoneView)
+        stackView.addArrangedSubview(emailView)
+        stackView.addArrangedSubview(addressView)
+        stackView.addArrangedSubview(groupView)
         addSubview(stackView)
         stackViewButtons.addArrangedSubview(callButton)
         stackViewButtons.addArrangedSubview(messageButton)
@@ -199,6 +189,11 @@ extension DetailsView: ConfigureView {
         
         nameLabel.font = UIFont(name: "Avenir-Heavy", size: 28)
         nameLabel.textColor = .systemGray
+        
+        phoneView.isHidden = true
+        emailView.isHidden = true
+        addressView.isHidden = true
+        groupView.isHidden = true
         
         stackView.axis = .vertical
         stackView.distribution = .fillEqually

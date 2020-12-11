@@ -34,7 +34,7 @@ class GroupViewController: UIViewController {
         setupTableView()
         configureView()
         viewModel.loadGroups()
-        uiview.nameGroupTf.textField.delegate = self
+        delegateTextFields()
     }
     
     override func loadView() {
@@ -52,6 +52,11 @@ class GroupViewController: UIViewController {
     func configureView() {
         uiview.addButton.addTarget(self, action: #selector(self.tappedAdd), for: .touchUpInside)
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
+        view.dismissKeyboardWhenTapView()
+    }
+    
+    func delegateTextFields() {
+        uiview.nameGroupTf.textField.delegate = self
     }
     
     // MARK: - Selectors

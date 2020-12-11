@@ -63,9 +63,8 @@ extension GroupButton: ConfigureView {
     
     func additionalConfiguration() {
         iconView.image = UIImage(named: "Grupo")
-    
-        let attr = NSAttributedString(string: "Grupo", attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
-        setAttributedTitle(attr, for: .normal)
+        
+        setAttributedTitle("Grupo".styleText(.Avenir, 18), for: .normal)
         setTitleColor(.lightGray, for: .normal)
         contentHorizontalAlignment = .left
         titleEdgeInsets.left = 42

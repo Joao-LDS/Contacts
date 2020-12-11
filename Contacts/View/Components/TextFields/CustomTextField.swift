@@ -88,8 +88,9 @@ extension CustomTextField: ConfigureView {
         backgroundColor = .white
         
         textField.defaultTextAttributes = [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray]
-        textField.attributedPlaceholder = NSAttributedString(string: placeHolder.rawValue, attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
-        imageView.image = UIImage(named: placeHolder.rawValue)
+        let placeHolder = self.placeHolder.rawValue.styleText(.Avenir, 18)
+        textField.attributedPlaceholder = placeHolder
+        imageView.image = UIImage(named: self.placeHolder.rawValue)
         
         lineView.backgroundColor = UIColor(named: "second")
     }

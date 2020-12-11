@@ -161,6 +161,9 @@ extension FormView: ConfigureView {
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         stackView.axis = .vertical
+        
+        phoneTf.textField.keyboardType = .phonePad
+        emailTf.textField.keyboardType = .emailAddress
     }
     
     

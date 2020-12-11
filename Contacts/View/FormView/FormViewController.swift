@@ -16,6 +16,8 @@ class FormViewController: UIViewController {
     var uiview: FormView
     let viewModel: FormViewModel
     
+    // MARK: - Init
+    
     init(viewModel: FormViewModel) {
         self.viewModel = viewModel
         uiview = FormView()
@@ -25,39 +27,62 @@ class FormViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func loadView() {
-        self.view = uiview
-    }
 
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        delegateTextFields()
         configureObserverForKeyBoard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setupGroupButton()
+    }
+    
+    override func loadView() {
+        self.view = uiview
     }
 
     // MARK: - Functions
     
     func configureView() {
-        // Delegate UITextFieldDelegate
-        self.uiview.nameTf.textField.delegate = self
-        self.uiview.phoneTf.textField.delegate = self
-        self.uiview.emailTf.textField.delegate = self
-        self.uiview.addressTf.textField.delegate = self
-        
-        if viewModel.contact != nil {
-            let contact = viewModel.contact
-            self.uiview.nameTf.textField.text = contact?.name
-            self.uiview.phoneTf.textField.text = contact?.phone
-            self.uiview.emailTf.textField.text = contact?.email
-            self.uiview.addressTf.textField.text = contact?.address
+        if viewModel.isEdit {
+            configureViewWithContact()
         }
         uiview.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.tappedPhoto(_:))))
         uiview.addButton.addTarget(self, action: #selector(self.addContact), for: .touchUpInside)
         uiview.groupTypeButton.addTarget(self, action: #selector(self.tappedGroup), for: .touchUpInside)
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
+        view.dismissKeyboardWhenTapView()
+    }
+    
+    func configureViewWithContact() {
+        guard let contact = viewModel.contact else { return }
+        uiview.imageView.image = contact.photo as? UIImage
+        uiview.nameTf.textField.text = contact.name
+        uiview.phoneTf.textField.text = contact.phone
+        uiview.addressTf.textField.text = contact.address
+        uiview.emailTf.textField.text = contact.email
+        if let group = contact.group?.name {
+            uiview.groupTypeButton.setAttributedTitle(group.styleText(.Avenir, 18), for: .normal)
+        }
+    }
+    
+    func setupGroupButton() {
+        if let group = viewModel.delegate?.selectedGroup?.name {
+            uiview.groupTypeButton.setAttributedTitle(group.styleText(.Avenir, 18), for: .normal)
+        }
+    }
+    
+    func delegateTextFields() {
+        self.uiview.nameTf.textField.delegate = self
+        self.uiview.phoneTf.textField.delegate = self
+        self.uiview.emailTf.textField.delegate = self
+        self.uiview.addressTf.textField.delegate = self
+        
     }
     
     func configureObserverForKeyBoard() {
@@ -171,25 +196,6 @@ class FormViewController: UIViewController {
         }
     }
     
-    /* Será feito na branch de edição
-    func setupGroupButton() {
-        if let group = viewModel.delegate?.selectedGroup {
-            let attr = NSAttributedString(string: group.name!, attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
-            uiview.groupTypeButton.setAttributedTitle(attr, for: .normal)
-        }
-    }
-    
-    func configureViewWithContact() {
-        guard let contact = viewModel.contact else { return }
-        uiview.imageView.image = contact.photo as? UIImage
-        uiview.nameTf.textField.text = contact.name
-        uiview.phoneTf.textField.text = contact.phone
-        uiview.addressTf.textField.text = contact.address
-        let group = contact.group?.name
-        let attr = NSAttributedString(string: group!, attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
-        uiview.groupTypeButton.setAttributedTitle(attr, for: .normal)
-    }
-    */
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -216,6 +222,21 @@ extension FormViewController: UITextFieldDelegate {
     // Seta o activeTextField com o textField atual quando ele é selecionado
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextField = textField
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else { return false }
+        let newText = (text as NSString).replacingCharacters(in: range, with: string)
+        
+        // Valida máscara par o textfiled do telefone
+        if textField == uiview.phoneTf.textField {
+            textField.text = viewModel.formatPhoneNumber(newText)
+            return false
+        } else {
+            return true
+        }
+
     }
     
 }
