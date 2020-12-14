@@ -15,12 +15,14 @@ enum TypeObject {
 
 class CoreDataStack {
     
+    // MARK: - Core Data Properties
+    
     static let shared = CoreDataStack()
     var fetchedResultControllerContact: NSFetchedResultsController<Contact>?
     var fetchedResultControllerGroup: NSFetchedResultsController<Group>?
-    
-    // MARK: - Core Data stack
-
+    var context: NSManagedObjectContext {
+        return Self.persistentContainer.viewContext
+    }
     private static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Contacts")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -30,12 +32,8 @@ class CoreDataStack {
         })
         return container
     }()
-    
-    var context: NSManagedObjectContext {
-        return Self.persistentContainer.viewContext
-    }
 
-    // MARK: - Core Data Saving support
+    // MARK: - Core Data Functions
 
     func save() {
         do {

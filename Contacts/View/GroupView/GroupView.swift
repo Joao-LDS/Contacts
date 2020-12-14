@@ -12,6 +12,18 @@ class GroupView: UIView {
     
     // MARK: - Properties
     
+    lazy var hintView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var hintLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var backButton: FloatButton = {
         let view = FloatButton()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -58,10 +70,21 @@ extension GroupView: ConfigureView {
         addSubview(nameGroupTf)
         addSubview(tableView)
         addSubview(addButton)
+        hintView.addSubview(hintLabel)
+        addSubview(hintView)
     }
     
     func addConstraints() {
         NSLayoutConstraint.activate([
+            hintView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            hintView.topAnchor.constraint(equalTo: topAnchor),
+            hintView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            hintView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            hintLabel.centerYAnchor.constraint(equalTo: hintView.centerYAnchor),
+            hintLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            hintLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
             backButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             backButton.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 20),
             
@@ -85,6 +108,19 @@ extension GroupView: ConfigureView {
         backButton.imageview.image = UIImage(named: "back_arrow")
         
         tableView.separatorStyle = .none
+        
+        hintView.backgroundColor = .black
+        hintView.alpha = 0.7
+        
+        hintLabel.font = UIFont(name: "Avenir", size: 20)
+        hintLabel.numberOfLines = 0
+        hintLabel.textAlignment = .center
+        hintLabel.textColor = .white
+        hintLabel.text = """
+        Você pode criar um grupo usando a caixa de texto acima.
+        
+        Se precisar, você pode editar um grupo pressionando ele por um segundo.
+        """
     }
     
     

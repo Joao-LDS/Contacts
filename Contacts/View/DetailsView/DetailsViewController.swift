@@ -39,7 +39,6 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        configureView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,30 +50,44 @@ class DetailsViewController: UIViewController {
     
     func configureView() {
         let contact = viewModel.contact
-        let emptyString = ""
         
         uiview.imageView.image = contact.photo as? UIImage
         uiview.nameLabel.text = contact.name
         
-        if contact.phone != emptyString {
+        if contact.phone != Contants.String.empty {
             uiview.phoneView.label.text = contact.phone!
             uiview.phoneView.isHidden = false
             uiview.callButton.isHidden = false
             uiview.messageButton.isHidden = false
+        } else {
+            uiview.phoneView.isHidden = true
+            uiview.callButton.isHidden = true
+            uiview.messageButton.isHidden = true
         }
-        if contact.address != emptyString {
+        
+        if contact.address != Contants.String.empty {
             uiview.addressView.label.text = contact.address
             uiview.addressView.isHidden = false
             uiview.localizeButton.isHidden = false
+        } else {
+            uiview.addressView.isHidden = true
+            uiview.localizeButton.isHidden = true
         }
-        if contact.email != emptyString {
+        
+        if contact.email != Contants.String.empty {
             uiview.emailView.label.text = contact.email
             uiview.emailView.isHidden = false
             uiview.messageButton.isHidden = false
+        } else {
+            uiview.emailView.isHidden = true
+            uiview.messageButton.isHidden = true
         }
-        if let groupName = contact.group?.name, groupName != emptyString {
+        
+        if let groupName = contact.group?.name, groupName != Contants.String.empty {
             uiview.groupView.label.text = groupName
             uiview.groupView.isHidden = false
+        } else {
+            uiview.groupView.isHidden = true
         }
         
         uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
@@ -84,9 +97,6 @@ class DetailsViewController: UIViewController {
         uiview.messageButton.addTarget(self, action: #selector(self.tappedMessage), for: .touchUpInside)
     }
     
-    
-    // MARK: - Functions
-
     func showActionSheetForLocalize() {
         var actions: [UIAlertAction] = []
         
@@ -110,16 +120,15 @@ class DetailsViewController: UIViewController {
     
     func showActionSheetForMessage() {
         let contact = viewModel.contact
-        let emptyString = ""
         var actions: [UIAlertAction] = []
         
-        if contact.phone != emptyString {
+        if contact.phone != Contants.String.empty {
             actions.append(UIAlertAction(title: "SMS", style: .default) { _ in
                 self.viewModel.SMS()
             })
         }
         
-        if contact.email != emptyString {
+        if contact.email != Contants.String.empty {
             actions.append(UIAlertAction(title: "E-mail", style: .default) { _ in
                 let mailController = self.configureMail()
                 if MFMailComposeViewController.canSendMail() {

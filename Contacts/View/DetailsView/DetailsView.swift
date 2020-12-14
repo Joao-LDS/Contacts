@@ -190,11 +190,6 @@ extension DetailsView: ConfigureView {
         nameLabel.font = UIFont(name: "Avenir-Heavy", size: 28)
         nameLabel.textColor = .systemGray
         
-        phoneView.isHidden = true
-        emailView.isHidden = true
-        addressView.isHidden = true
-        groupView.isHidden = true
-        
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
@@ -209,9 +204,6 @@ extension DetailsView: ConfigureView {
         messageButton.imageview.image = UIImage(named: "message")
         localizeButton.imageview.image = UIImage(named: "localize")
         editButton.imageview.image = UIImage(named: "edit")
-        callButton.isHidden = true
-        messageButton.isHidden = true
-        localizeButton.isHidden = true
     }
     
     
