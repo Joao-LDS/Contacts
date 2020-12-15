@@ -105,14 +105,14 @@ extension GroupView: ConfigureView {
     func additionalConfiguration() {
         backgroundColor = .white
         
-        backButton.imageview.image = UIImage(named: "back_arrow")
+        backButton.imageview.image = Constants.Image.backArrow
         
         tableView.separatorStyle = .none
         
-        hintView.backgroundColor = .black
+        hintView.backgroundColor = Constants.Color.main
         hintView.alpha = 0.7
         
-        hintLabel.font = UIFont(name: "Avenir", size: 20)
+        hintLabel.font = Constants.Font.avenir20
         hintLabel.numberOfLines = 0
         hintLabel.textAlignment = .center
         hintLabel.textColor = .white

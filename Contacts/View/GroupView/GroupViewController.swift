@@ -88,7 +88,7 @@ class GroupViewController: UIViewController {
         actions.append(UIAlertAction(title: "Salvar", style: .default, handler: { _ in
             guard let textFields = alert.textFields else { return }
             let textField = textFields[0] as UITextField
-            if let name = textField.text, name != Contants.String.empty {
+            if let name = textField.text, name != Constants.String.empty {
                 self.viewModel.editGroup(At: index, with: name)
                 self.uiview.tableView.reloadData()
             }

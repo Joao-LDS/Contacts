@@ -37,7 +37,7 @@ extension OkButton: ConfigureView {
     }
     
     func additionalConfiguration() {
-        setImage(UIImage(named: "okButton"), for: .normal)
+        setImage(Constants.Image.okButton, for: .normal)
         layer.cornerRadius = 8
         shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.4)
     }

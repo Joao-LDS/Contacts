@@ -53,7 +53,7 @@ extension MapView: ConfigureView {
     }
     
     func additionalConfiguration() {
-        backButton.imageview.image = UIImage(named: "back_arrow")
+        backButton.imageview.image = Constants.Image.backArrow
         backButton.blackShadowColor()
     }
     

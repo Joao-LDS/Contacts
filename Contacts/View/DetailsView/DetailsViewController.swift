@@ -54,7 +54,7 @@ class DetailsViewController: UIViewController {
         uiview.imageView.image = contact.photo as? UIImage
         uiview.nameLabel.text = contact.name
         
-        if contact.phone != Contants.String.empty {
+        if contact.phone != Constants.String.empty {
             uiview.phoneView.label.text = contact.phone!
             uiview.phoneView.isHidden = false
             uiview.callButton.isHidden = false
@@ -65,7 +65,7 @@ class DetailsViewController: UIViewController {
             uiview.messageButton.isHidden = true
         }
         
-        if contact.address != Contants.String.empty {
+        if contact.address != Constants.String.empty {
             uiview.addressView.label.text = contact.address
             uiview.addressView.isHidden = false
             uiview.localizeButton.isHidden = false
@@ -74,7 +74,7 @@ class DetailsViewController: UIViewController {
             uiview.localizeButton.isHidden = true
         }
         
-        if contact.email != Contants.String.empty {
+        if contact.email != Constants.String.empty {
             uiview.emailView.label.text = contact.email
             uiview.emailView.isHidden = false
             uiview.messageButton.isHidden = false
@@ -83,7 +83,7 @@ class DetailsViewController: UIViewController {
             uiview.messageButton.isHidden = true
         }
         
-        if let groupName = contact.group?.name, groupName != Contants.String.empty {
+        if let groupName = contact.group?.name, groupName != Constants.String.empty {
             uiview.groupView.label.text = groupName
             uiview.groupView.isHidden = false
         } else {
@@ -122,13 +122,13 @@ class DetailsViewController: UIViewController {
         let contact = viewModel.contact
         var actions: [UIAlertAction] = []
         
-        if contact.phone != Contants.String.empty {
+        if contact.phone != Constants.String.empty {
             actions.append(UIAlertAction(title: "SMS", style: .default) { _ in
                 self.viewModel.SMS()
             })
         }
         
-        if contact.email != Contants.String.empty {
+        if contact.email != Constants.String.empty {
             actions.append(UIAlertAction(title: "E-mail", style: .default) { _ in
                 let mailController = self.configureMail()
                 if MFMailComposeViewController.canSendMail() {

@@ -54,11 +54,11 @@ extension ViewDetail: ConfigureView {
     }
     
     func additionalConfiguration() {
-        view.shadow(shadowColor: UIColor(named: "second")!.cgColor, shadowRadius: 7, shadowOpacity: 0.4)
+        view.shadow(shadowColor: Constants.Color.main!.cgColor, shadowRadius: 7, shadowOpacity: 0.4)
         view.layer.cornerRadius = 10
         view.backgroundColor = .white
         
-        label.font = UIFont(name: "Avenir", size: 20)
+        label.font = Constants.Font.avenir20
         label.textColor = .systemGray
     }
     

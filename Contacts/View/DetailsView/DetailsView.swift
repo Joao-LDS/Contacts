@@ -170,9 +170,9 @@ extension DetailsView: ConfigureView {
     }
     
     func additionalConfiguration() {
-        backgroundColor = UIColor(named: "second")
+        backgroundColor = Constants.Color.main
         
-        backButton.imageview.image = UIImage(named: "back_arrow")
+        backButton.imageview.image = Constants.Image.backArrow
         backButton.blackShadowColor()
         
         bottomView.backgroundColor = .white
@@ -187,7 +187,7 @@ extension DetailsView: ConfigureView {
         shadowView.layer.cornerRadius = 75
         shadowView.shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.5)
         
-        nameLabel.font = UIFont(name: "Avenir-Heavy", size: 28)
+        nameLabel.font = Constants.Font.avenirHeavy28
         nameLabel.textColor = .systemGray
         
         stackView.axis = .vertical
@@ -200,10 +200,10 @@ extension DetailsView: ConfigureView {
         stackViewButtons.alignment = .fill
         stackViewButtons.spacing = 24
         
-        callButton.imageview.image = UIImage(named: "call")
-        messageButton.imageview.image = UIImage(named: "message")
-        localizeButton.imageview.image = UIImage(named: "localize")
-        editButton.imageview.image = UIImage(named: "edit")
+        callButton.imageview.image = Constants.Image.call
+        messageButton.imageview.image = Constants.Image.message
+        localizeButton.imageview.image = Constants.Image.localize
+        editButton.imageview.image = Constants.Image.edit
     }
     
     

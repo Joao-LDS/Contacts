@@ -87,12 +87,12 @@ extension CustomTextField: ConfigureView {
     func additionalConfiguration() {
         backgroundColor = .white
         
-        textField.defaultTextAttributes = [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray]
-        let placeHolder = self.placeHolder.rawValue.styleText(.Avenir, 18)
+        textField.defaultTextAttributes = [.font: Constants.Font.avenir18!, .foregroundColor: UIColor.systemGray]
+        let placeHolder = self.placeHolder.rawValue.styleText(Constants.Font.avenir18!)
         textField.attributedPlaceholder = placeHolder
         imageView.image = UIImage(named: self.placeHolder.rawValue)
         
-        lineView.backgroundColor = UIColor(named: "second")
+        lineView.backgroundColor = Constants.Color.main
     }
     
 }

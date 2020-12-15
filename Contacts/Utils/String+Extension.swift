@@ -9,16 +9,11 @@
 import Foundation
 import UIKit
 
-enum AvenirFont: String {
-    case Avenir = "Avenir"
-    case AvenirHeavy = "Avenir-Heavy"
-}
-
 extension String {
     
-    func styleText(_ font: AvenirFont,_ size: CGFloat) -> NSAttributedString {
+    func styleText(_ font: UIFont) -> NSAttributedString {
         return NSAttributedString(string: self,
-                                  attributes: [.font: UIFont(name: font.rawValue, size: size)!,
+                                  attributes: [.font: font,
                                                .foregroundColor: UIColor.systemGray])
     }
 }

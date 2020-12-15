@@ -15,9 +15,9 @@ extension UIAlertController {
                 preferredStyle: UIAlertController.Style, actions: [UIAlertAction]?) -> UIAlertController {
         
         let alert = UIAlertController(title: "", message: "", preferredStyle: preferredStyle)
-        alert.setValue(title?.styleText(.AvenirHeavy, 18), forKey: "attributedTitle")
-        alert.setValue(message.styleText(.Avenir, 18), forKey: "attributedMessage")
-        alert.view.tintColor = UIColor(named: "second")
+        alert.setValue(title?.styleText(Constants.Font.avenirHeavy18!), forKey: "attributedTitle")
+        alert.setValue(message.styleText(Constants.Font.avenir18!), forKey: "attributedMessage")
+        alert.view.tintColor = Constants.Color.main
         
         let titleAction = "Cancelar"
         

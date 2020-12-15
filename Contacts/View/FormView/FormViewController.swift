@@ -67,13 +67,13 @@ class FormViewController: UIViewController {
         uiview.addressTf.textField.text = contact.address
         uiview.emailTf.textField.text = contact.email
         if let group = contact.group?.name {
-            uiview.groupTypeButton.setAttributedTitle(group.styleText(.Avenir, 18), for: .normal)
+            uiview.groupTypeButton.setAttributedTitle(group.styleText(Constants.Font.avenir18!), for: .normal)
         }
     }
     
     func setupGroupButton() {
         if let group = viewModel.delegate?.selectedGroup?.name {
-            uiview.groupTypeButton.setAttributedTitle(group.styleText(.Avenir, 18), for: .normal)
+            uiview.groupTypeButton.setAttributedTitle(group.styleText(Constants.Font.avenir18!), for: .normal)
         }
     }
     
@@ -115,7 +115,7 @@ class FormViewController: UIViewController {
             actions.append(UIAlertAction(title: "Limpar foto",
                                                 style: .default,
                                                 handler: { _ in
-            self.uiview.imageView.image = UIImage(named: "userDefaultImage")
+            self.uiview.imageView.image = Constants.Image.userDefaultImage
             }))
         }
         
@@ -229,7 +229,7 @@ extension FormViewController: UITextFieldDelegate {
         guard let text = textField.text else { return false }
         let newText = (text as NSString).replacingCharacters(in: range, with: string)
         
-        // Valida máscara par o textfiled do telefone
+        // Valida máscara paro o textfiled do telefone
         if textField == uiview.phoneTf.textField {
             textField.text = viewModel.formatPhoneNumber(newText)
             return false

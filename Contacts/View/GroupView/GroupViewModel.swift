@@ -25,7 +25,7 @@ class GroupViewModel: FormViewModelDelegate {
     
     // MARK: - Func
     func addGroupWith(name: String) {
-        if name != Contants.String.empty {
+        if name != Constants.String.empty {
             let group = Group(context: coreData.context)
             group.name = name
             coreData.save()

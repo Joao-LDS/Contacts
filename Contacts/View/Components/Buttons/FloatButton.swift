@@ -56,9 +56,9 @@ extension FloatButton: ConfigureView {
     }
     
     func additionalConfiguration() {
-        backgroundColor = UIColor(named: "second")
+        backgroundColor = Constants.Color.main
         layer.cornerRadius = 25
-        shadow(shadowColor: UIColor(named: "second")!.cgColor, shadowRadius: 10, shadowOpacity: 0.5)
+        shadow(shadowColor: Constants.Color.main!.cgColor, shadowRadius: 10, shadowOpacity: 0.5)
     }
     
     

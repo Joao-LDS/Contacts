@@ -122,7 +122,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        render.strokeColor = UIColor(named: "second")
+        render.strokeColor = Constants.Color.main
         render.lineWidth = 2.0
         return render
     }

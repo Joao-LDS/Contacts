@@ -38,6 +38,7 @@ class ContactsListTableViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         configureView()
+        uiview.searchTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,6 +57,8 @@ class ContactsListTableViewController: UIViewController {
     
     func configureView() {
         uiview.floatButton.addTarget(self, action: #selector(self.plusTapped(_:)), for: .touchUpInside)
+        uiview.searchTextField.addTarget(self, action: #selector(self.searchChange(_:)), for: .editingChanged)
+        uiview.dismissKeyboardWhenTapView()
     }
     
     // MARK: - Selectors
@@ -65,6 +68,11 @@ class ContactsListTableViewController: UIViewController {
         let controller = FormViewController(viewModel: viewModel)
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true, completion: nil)
+    }
+    
+    @objc func searchChange(_ tf: UITextField) {
+        viewModel.filterContacts(tf.text ?? "")
+        uiview.tableView.reloadData()
     }
 
 }
@@ -78,29 +86,37 @@ extension ContactsListTableViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.contacts.count
+        return viewModel.countRows()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
-        let contact = viewModel.contacts[indexPath.row]
+        let contact = viewModel.returnContact(at: indexPath.row)
         let image = contact.photo as! UIImage
         cell.configureCell(with: contact.name!, contact.phone!, image)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contact = viewModel.contacts[indexPath.row]
+        let contact = viewModel.returnContact(at: indexPath.row)
         let viewModel = DetailsViewModel(contact: contact)
         let controller = DetailsViewController(viewModel: viewModel)
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteContact(at: indexPath)
             uiview.tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }
+}
+
+extension ContactsListTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }

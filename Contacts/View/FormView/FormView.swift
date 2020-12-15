@@ -139,16 +139,16 @@ extension FormView: ConfigureView {
     }
     
     func additionalConfiguration() {
-        backgroundColor = UIColor(named: "second")
+        backgroundColor = Constants.Color.main
         
-        backButton.imageview.image = UIImage(named: "back_arrow")
+        backButton.imageview.image = Constants.Image.backArrow
         backButton.blackShadowColor()
         
         bottomView.backgroundColor = .white
         bottomView.layer.cornerRadius = 30
         bottomView.shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.5)
         
-        imageView.image = UIImage(named: "userDefaultImage")
+        imageView.image = Constants.Image.userDefaultImage
         imageView.layer.cornerRadius = 75
         imageView.layer.masksToBounds = true
         imageView.isUserInteractionEnabled = true
