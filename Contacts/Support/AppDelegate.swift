@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,9 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let viewModel = ContactListViewModel()
+        FirebaseApp.configure()
+        let viewModel = AuthenticationViewModel()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ContactsListTableViewController(viewModel: viewModel)
+        window?.rootViewController = AuthenticationViewController(viewModel: viewModel)
         window?.makeKeyAndVisible()
         
         return true
