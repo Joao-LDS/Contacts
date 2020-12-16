@@ -17,13 +17,13 @@ class RegistrationView: UIView {
     }()
     
     lazy var passwordTextField: CustomTextField = {
-        let view = CustomTextField(placeHolder: .Número)
+        let view = CustomTextField(placeHolder: .Senha)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     lazy var confirmPasswordTextField: CustomTextField = {
-        let view = CustomTextField(placeHolder: .Número)
+        let view = CustomTextField(placeHolder: .Senha)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -34,8 +34,8 @@ class RegistrationView: UIView {
         return view
     }()
     
-    lazy var signButton: OkButton = {
-        let view = OkButton()
+    lazy var signButton: FloatButton = {
+        let view = FloatButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -73,23 +73,29 @@ extension RegistrationView: ConfigureView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             
-            iHaveAnAccountButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            iHaveAnAccountButton.bottomAnchor.constraint(equalTo: signButton.topAnchor, constant: -30),
-            
             signButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            signButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30),
+            signButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 70),
+            
+            iHaveAnAccountButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            iHaveAnAccountButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50)
         ])
     }
     
     func additionalConfiguration() {
         backgroundColor = .white
         
+        passwordTextField.textField.isSecureTextEntry = true
+        confirmPasswordTextField.textField.isSecureTextEntry = true
+        
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 30
         stackView.distribution = .fillEqually
         
-        iHaveAnAccountButton.setTitle("Eu já tenho uma conta.", for: .normal)
+        signButton.imageview.image = Constants.Image.ok
+        
+        iHaveAnAccountButton.setTitle("Eu já tenho uma conta", for: .normal)
         iHaveAnAccountButton.setTitleColor(Constants.Color.main!, for: .normal)
+        iHaveAnAccountButton.titleLabel?.font = Constants.Font.avenir18
     }
     
     

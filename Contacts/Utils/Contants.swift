@@ -28,8 +28,9 @@ struct Constants {
         static let message = UIImage(named: "message")
         static let localize = UIImage(named: "localize")
         static let edit = UIImage(named: "edit")
-        static let okButton = UIImage(named: "okButton")
+        static let ok = UIImage(named: "ok")
         static let group = UIImage(named: "Grupo")
+        static let password = UIImage(named: "Senha")
     }
     
     struct Font {

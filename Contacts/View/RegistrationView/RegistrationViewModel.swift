@@ -18,9 +18,11 @@ class RegistrationViewModel {
     
     func signUpUser(_ email: String,_ password: String,_ passwordAgain: String) {
         if confirmPassword(password, with: passwordAgain) {
-            AuthService().registerUser(email, password) { failed, errorDescription in
-                let emptyStr = Constants.String.empty
-                if failed || errorDescription != emptyStr {
+            let user = User()
+            user.email = email
+            user.password = password
+            AuthService().registerUser(user) { sucess, errorDescription in
+                if sucess == false && errorDescription != nil {
                     self.delegate?.showAlertWithError(message: errorDescription!)
                 }
             }

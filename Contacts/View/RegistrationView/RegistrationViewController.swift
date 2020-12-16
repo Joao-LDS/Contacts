@@ -35,6 +35,7 @@ class RegistrationViewController: UIViewController {
     
     func configureView() {
         uiview.signButton.addTarget(self, action: #selector(self.tappedSignUp), for: .touchUpInside)
+        uiview.iHaveAnAccountButton.addTarget(self, action: #selector(self.tappedIHaveAnAccount), for: .touchUpInside)
     }
     
     @objc func tappedSignUp() {
@@ -42,6 +43,10 @@ class RegistrationViewController: UIViewController {
             let passwordAgain = uiview.confirmPasswordTextField.textField.text,
             let email = uiview.emailTextField.textField.text else { return }
         viewModel.signUpUser(email, password, passwordAgain)
+    }
+    
+    @objc func tappedIHaveAnAccount() {
+        dismiss(animated: true)
     }
 
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 enum PlaceHolder: String {
-    case Nome, Número, Email, Endereço, Grupo
+    case Nome, Número, Email, Endereço, Grupo, Senha
 }
 
 class CustomTextField: UIView {

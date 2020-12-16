@@ -38,16 +38,28 @@ class AuthenticationViewController: UIViewController {
         uiview.signButton.addTarget(self, action: #selector(self.tappedSignInUser), for: .touchUpInside)
     }
     
+    func presentContactListView() {
+        let viewModel = ContactListViewModel()
+        let controller = ContactsListTableViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
+    }
+    
     @objc func tappedSignInUser() {
         guard let email = uiview.emailTextField.textField.text,
             let password = uiview.passwordTextField.textField.text else { return }
         
-        viewModel.signInUser(email, password: password)
+        viewModel.signInUser(email, password: password) { sucess in
+            if sucess {
+                self.presentContactListView()
+            }
+        }
     }
     
     @objc func tappedCreateAnAccount() {
         let  viewModel = RegistrationViewModel()
         let controller = RegistrationViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
     }
 }

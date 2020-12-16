@@ -52,5 +52,15 @@ class ContactListViewModel {
             return contacts[index]
         }
     }
+    
+    func userAlreadyAuthenticated() {
+        AuthService().userAlreadyAuthenticated { authenticated in
+            if authenticated {
+                print("autenticado")
+            } else {
+                print("nao autenticado")
+            }
+        }
+    }
 
 }

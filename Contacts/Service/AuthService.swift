@@ -7,14 +7,17 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseAuth
 
 class AuthService {
     
-    func registerUser(_ email: String,_ password: String, completion: @escaping(Bool, String?) -> Void) {
+    let authError = AuthError()
+    
+    func registerUser(_ user: User, completion: @escaping(Bool, String?) -> Void) {
+        guard let email = user.email, let password = user.password else { return }
         Auth.auth().createUser(withEmail: email, password: password) { _, error in
-            if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
-                let errorDescription = self.returnErrorDescription(errorCode)
+            if let error = error {
+                let errorDescription = self.authError.returnErrorDescription(error)
                 completion(false, errorDescription)
                 return
             }
@@ -22,10 +25,10 @@ class AuthService {
         }
     }
     
-    func signInUser(_ email: String,_ password: String, completion: @escaping(Bool, String?) -> Void) {
+    func loginUser(_ email: String,_ password: String, completion: @escaping(Bool, String?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
-            if let error = error, let errorDescription = AuthErrorCode(rawValue: error._code) {
-                let errorDescription = self.returnErrorDescription(errorDescription)
+            if let error = error {
+                let errorDescription = self.authError.returnErrorDescription(error)
                 completion(false, errorDescription)
                 return
             }
@@ -33,21 +36,13 @@ class AuthService {
         }
     }
     
-    func returnErrorDescription(_ error: AuthErrorCode) -> String {
-        var errorDescription: String
-        switch error {
-        case .weakPassword:
-            errorDescription = "A senha deve ter 6 caracteres ou mais."
-            return errorDescription
-        case .invalidEmail:
-            errorDescription = "O e-mail tem um formato inválido."
-            return errorDescription
-        case .wrongPassword:
-            errorDescription = "A senha está incorreta."
-            return errorDescription
-        default:
-            return ""
+    func userAlreadyAuthenticated(completion: @escaping(Bool) -> Void) {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                completion(true)
+                return
+            }
+            completion(false)
         }
     }
-    
 }

@@ -12,12 +12,14 @@ class AuthenticationViewModel {
     
     var delegate: SignErrorDelegate?
     
-    func signInUser(_ email: String, password: String) {
-        AuthService().signInUser(email, password) { failed, errorDescription in
-            let emptyString = Constants.String.empty
-            if failed || errorDescription != emptyString {
+    func signInUser(_ email: String, password: String, completion: @escaping(Bool) -> Void) {
+        AuthService().loginUser(email, password) { sucess, errorDescription in
+            if sucess == false && errorDescription != nil {
                 self.delegate?.showAlertWithError(message: errorDescription!)
+                completion(false)
+                return
             }
+            completion(true)
         }
     }
 }
