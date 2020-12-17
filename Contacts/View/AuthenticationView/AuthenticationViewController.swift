@@ -26,7 +26,8 @@ class AuthenticationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        viewModel.delegate = self
+        viewModel.signErrorDelegate = self
+        viewModel.authViewDelegate = self
     }
     
     override func loadView() {
@@ -38,22 +39,11 @@ class AuthenticationViewController: UIViewController {
         uiview.signButton.addTarget(self, action: #selector(self.tappedSignInUser), for: .touchUpInside)
     }
     
-    func presentContactListView() {
-        let viewModel = ContactListViewModel()
-        let controller = ContactsListTableViewController(viewModel: viewModel)
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true)
-    }
-    
     @objc func tappedSignInUser() {
         guard let email = uiview.emailTextField.textField.text,
             let password = uiview.passwordTextField.textField.text else { return }
         
-        viewModel.signInUser(email, password: password) { sucess in
-            if sucess {
-                self.presentContactListView()
-            }
-        }
+        viewModel.signInUser(email, password)
     }
     
     @objc func tappedCreateAnAccount() {
@@ -68,5 +58,11 @@ extension AuthenticationViewController: SignErrorDelegate {
     func showAlertWithError(message: String) {
         let alert = UIAlertController().create(title: nil, message: message, preferredStyle: .alert, actions: [])
         present(alert, animated: true)
+    }
+}
+
+extension AuthenticationViewController: AuthenticationViewModelDelegate {
+    func presentContactListView() {
+        dismiss(animated: true)
     }
 }

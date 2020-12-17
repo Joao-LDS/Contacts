@@ -32,7 +32,7 @@ class FormViewModel {
     
     // MARK: - Functions
     
-    func addContact(with name: String,_ phone: String,_ email: String,_ address: String,_ photo: NSObject) -> Bool {
+    func addContact(with name: String,_ phone: String,_ email: String,_ address: String,_ photo: Data) -> Bool {
         
         if name.isEmpty {
             return false

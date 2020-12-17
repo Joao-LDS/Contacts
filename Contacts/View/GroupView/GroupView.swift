@@ -42,8 +42,8 @@ class GroupView: UIView {
         return view
     }()
     
-    lazy var addButton: OkButton = {
-        let view = OkButton()
+    lazy var addButton: FloatButton = {
+        let view = FloatButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -121,6 +121,8 @@ extension GroupView: ConfigureView {
         
         Se precisar, você pode editar um grupo pressionando ele por um segundo.
         """
+        
+        addButton.imageview.image = Constants.Image.ok
     }
     
     

@@ -9,6 +9,12 @@
 import UIKit
 
 class AuthenticationView: UIView {
+    
+    lazy var imageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     lazy var emailTextField: CustomTextField = {
         let view = CustomTextField(placeHolder: .Email)
@@ -59,6 +65,7 @@ class AuthenticationView: UIView {
 
 extension AuthenticationView: ConfigureView {
     func addComponents() {
+        addSubview(imageView)
         stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(passwordTextField)
         addSubview(stackView)
@@ -69,6 +76,11 @@ extension AuthenticationView: ConfigureView {
     
     func addConstraints() {
         NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 140),
+            imageView.heightAnchor.constraint(equalToConstant: 140),
+            imageView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -70),
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -86,6 +98,8 @@ extension AuthenticationView: ConfigureView {
     
     func additionalConfiguration() {
         backgroundColor = .white
+        
+        imageView.image = Constants.Image.logo
         
         passwordTextField.textField.isSecureTextEntry = true
         

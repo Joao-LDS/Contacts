@@ -72,8 +72,8 @@ class FormView: UIView {
         return view
     }()
     
-    lazy var addButton: OkButton = {
-        let view = OkButton()
+    lazy var addButton: FloatButton = {
+        let view = FloatButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -164,6 +164,8 @@ extension FormView: ConfigureView {
         
         phoneTf.textField.keyboardType = .phonePad
         emailTf.textField.keyboardType = .emailAddress
+        
+        addButton.imageview.image = Constants.Image.ok
     }
     
     

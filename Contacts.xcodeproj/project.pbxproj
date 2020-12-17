@@ -47,7 +47,6 @@
 		E887F2D92581493C005482F1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887F2D82581493C005482F1 /* MapView.swift */; };
 		E887F2DB25814946005482F1 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887F2DA25814946005482F1 /* MapViewModel.swift */; };
 		E88E6527256FD8280072C45C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E6526256FD8280072C45C /* CustomTextField.swift */; };
-		E88E6529256FF7090072C45C /* OkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E6528256FF7090072C45C /* OkButton.swift */; };
 		E88E652B25700FA80072C45C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E652A25700FA80072C45C /* UIView+Extension.swift */; };
 		E88E652D257042DC0072C45C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E652C257042DC0072C45C /* CoreDataStack.swift */; };
 		E8975D642587B314000E6BCF /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8975D632587B314000E6BCF /* Contants.swift */; };
@@ -130,7 +129,6 @@
 		E887F2D82581493C005482F1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E887F2DA25814946005482F1 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		E88E6526256FD8280072C45C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		E88E6528256FF7090072C45C /* OkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkButton.swift; sourceTree = "<group>"; };
 		E88E652A25700FA80072C45C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E88E652C257042DC0072C45C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		E8975D632587B314000E6BCF /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 			isa = PBXGroup;
 			children = (
 				E82613A4256ED2BA008C213C /* FloatButton.swift */,
-				E88E6528256FF7090072C45C /* OkButton.swift */,
 				E81FCCDF25715DA600059531 /* GroupButton.swift */,
 			);
 			path = Buttons;
@@ -696,7 +693,6 @@
 				E81FCCE3257179B300059531 /* GroupView.swift in Sources */,
 				E8A599402575BBE500884F3F /* UIAlertController+Extensions.swift in Sources */,
 				E862CCCF25890385008F5F9B /* AuthService.swift in Sources */,
-				E88E6529256FF7090072C45C /* OkButton.swift in Sources */,
 				E81FCCE5257179BF00059531 /* GroupViewController.swift in Sources */,
 				E826139D256EC269008C213C /* ConfigureView.swift in Sources */,
 				79AEDA9523F81AB400B4422A /* FormViewController.swift in Sources */,

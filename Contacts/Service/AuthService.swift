@@ -37,12 +37,22 @@ class AuthService {
     }
     
     func userAlreadyAuthenticated(completion: @escaping(Bool) -> Void) {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if user != nil {
+        Auth.auth().addStateDidChangeListener { _, user in
+            let authenticated = user != nil ? true : false
+            if authenticated {
                 completion(true)
                 return
             }
             completion(false)
+        }
+    }
+    
+    func logoutUser() -> Bool {
+        do {
+            try Auth.auth().signOut()
+            return true
+        } catch {
+            return false
         }
     }
 }

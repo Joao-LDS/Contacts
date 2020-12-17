@@ -31,6 +31,8 @@ struct Constants {
         static let ok = UIImage(named: "ok")
         static let group = UIImage(named: "Grupo")
         static let password = UIImage(named: "Senha")
+        static let logout = UIImage(named: "logout")
+        static let logo = UIImage(named: "logo")
     }
     
     struct Font {

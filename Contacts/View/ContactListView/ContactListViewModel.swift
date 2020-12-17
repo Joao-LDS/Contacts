@@ -8,10 +8,15 @@
 
 import Foundation
 
+protocol ContactListViewModelDelegate {
+    func presentAuthenticationView()
+}
+
 class ContactListViewModel {
     
     // MARK: - Properties
     
+    var delegate: ContactListViewModelDelegate?
     let coreDataStack = CoreDataStack()
     var contacts: [Contact] = []
     var filteredContacts: [Contact] = []
@@ -55,11 +60,16 @@ class ContactListViewModel {
     
     func userAlreadyAuthenticated() {
         AuthService().userAlreadyAuthenticated { authenticated in
-            if authenticated {
-                print("autenticado")
-            } else {
-                print("nao autenticado")
+            if authenticated == false {
+                self.delegate?.presentAuthenticationView()
             }
+        }
+    }
+    
+    func logout() {
+        let logout = AuthService().logoutUser()
+        if logout == true {
+            delegate?.presentAuthenticationView()
         }
     }
 

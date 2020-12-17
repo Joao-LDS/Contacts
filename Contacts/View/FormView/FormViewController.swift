@@ -61,7 +61,7 @@ class FormViewController: UIViewController {
     
     func configureViewWithContact() {
         guard let contact = viewModel.contact else { return }
-        uiview.imageView.image = contact.photo as? UIImage
+        uiview.imageView.image = UIImage(data: contact.photo!)
         uiview.nameTf.textField.text = contact.name
         uiview.phoneTf.textField.text = contact.phone
         uiview.addressTf.textField.text = contact.address
@@ -148,9 +148,10 @@ class FormViewController: UIViewController {
             let phone = uiview.phoneTf.textField.text,
             let email = uiview.emailTf.textField.text,
             let address = uiview.addressTf.textField.text,
-            let photo = uiview.imageView.image else { return }
-        
-        if viewModel.addContact(with: name, phone, email, address, photo) {
+            let photo = uiview.imageView.image,
+            let data = photo.jpegData(compressionQuality: 1.0)else { return }
+    
+        if viewModel.addContact(with: name, phone, email, address, data) {
             dismiss(animated: true)
             return
         }

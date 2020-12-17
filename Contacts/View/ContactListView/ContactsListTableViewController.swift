@@ -38,12 +38,13 @@ class ContactsListTableViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         configureView()
+        viewModel.userAlreadyAuthenticated()
         uiview.searchTextField.delegate = self
+        viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        viewModel.userAlreadyAuthenticated()
         viewModel.fetchContacts()
         uiview.tableView.reloadData()
     }
@@ -57,8 +58,9 @@ class ContactsListTableViewController: UIViewController {
     }
     
     func configureView() {
-        uiview.floatButton.addTarget(self, action: #selector(self.plusTapped(_:)), for: .touchUpInside)
+        uiview.addButton.addTarget(self, action: #selector(self.plusTapped(_:)), for: .touchUpInside)
         uiview.searchTextField.addTarget(self, action: #selector(self.searchChange(_:)), for: .editingChanged)
+        uiview.logoutButton.addTarget(self, action: #selector(self.tappedLogout), for: .touchUpInside)
         uiview.dismissKeyboardWhenTapView()
     }
     
@@ -74,6 +76,10 @@ class ContactsListTableViewController: UIViewController {
     @objc func searchChange(_ tf: UITextField) {
         viewModel.filterContacts(tf.text ?? "")
         uiview.tableView.reloadData()
+    }
+    
+    @objc func tappedLogout() {
+        viewModel.logout()
     }
 
 }
@@ -93,8 +99,8 @@ extension ContactsListTableViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
         let contact = viewModel.returnContact(at: indexPath.row)
-        let image = contact.photo as! UIImage
-        cell.configureCell(with: contact.name!, contact.phone!, image)
+        let image = UIImage(data: contact.photo!)
+        cell.configureCell(with: contact.name!, contact.phone!, image!)
         return cell
     }
     
@@ -120,4 +126,13 @@ extension ContactsListTableViewController: UITextFieldDelegate {
         return true
     }
     
+}
+
+extension ContactsListTableViewController: ContactListViewModelDelegate {
+    func presentAuthenticationView() {
+        let viewModel = AuthenticationViewModel()
+        let controller = AuthenticationViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
+    }
 }

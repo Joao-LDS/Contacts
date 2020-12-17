@@ -8,18 +8,22 @@
 
 import Foundation
 
+protocol AuthenticationViewModelDelegate {
+    func presentContactListView()
+}
+
 class AuthenticationViewModel {
     
-    var delegate: SignErrorDelegate?
+    var signErrorDelegate: SignErrorDelegate?
+    var authViewDelegate: AuthenticationViewModelDelegate?
     
-    func signInUser(_ email: String, password: String, completion: @escaping(Bool) -> Void) {
+    func signInUser(_ email: String,_ password: String) {
         AuthService().loginUser(email, password) { sucess, errorDescription in
             if sucess == false && errorDescription != nil {
-                self.delegate?.showAlertWithError(message: errorDescription!)
-                completion(false)
+                self.signErrorDelegate?.showAlertWithError(message: errorDescription!)
                 return
             }
-            completion(true)
+            self.authViewDelegate?.presentContactListView()
         }
     }
 }

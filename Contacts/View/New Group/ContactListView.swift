@@ -12,6 +12,12 @@ class ContactListView: UIView {
     
     // MARK: - Properties
     
+    lazy var logoutButton: FloatButton = {
+        let view = FloatButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var viewSearchTextField: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +42,7 @@ class ContactListView: UIView {
         return view
     }()
     
-    lazy var floatButton: FloatButton = {
+    lazy var addButton: FloatButton = {
         let view = FloatButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -60,16 +66,20 @@ class ContactListView: UIView {
 extension ContactListView: ConfigureView {
     
     func addComponents() {
-//        searchTextField.leftView = leftViewTextField
+        addSubview(logoutButton)
         viewSearchTextField.addSubview(searchTextField)
         addSubview(viewSearchTextField)
         addSubview(tableView)
-        addSubview(floatButton)
+        addSubview(addButton)
     }
     
     func addConstraints() {
         NSLayoutConstraint.activate([
-            viewSearchTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            logoutButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            logoutButton.trailingAnchor.constraint(equalTo: viewSearchTextField.leadingAnchor, constant: -20),
+            logoutButton.centerYAnchor.constraint(equalTo: viewSearchTextField.centerYAnchor),
+            
+            viewSearchTextField.leadingAnchor.constraint(equalTo: logoutButton.trailingAnchor, constant: 20),
             viewSearchTextField.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 15),
             viewSearchTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             viewSearchTextField.heightAnchor.constraint(equalToConstant: 80),
@@ -87,13 +97,15 @@ extension ContactListView: ConfigureView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            floatButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26),
-            floatButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -26),
+            addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -26),
+            addButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -26),
         ])
     }
     
     func additionalConfiguration() {
         backgroundColor = .white
+        
+        logoutButton.imageview.image = Constants.Image.logout
         
         viewSearchTextField.backgroundColor = .white
         viewSearchTextField.shadow(shadowColor: Constants.Color.main!.cgColor, shadowRadius: 7, shadowOpacity: 0.4)
@@ -110,6 +122,6 @@ extension ContactListView: ConfigureView {
         
         tableView.separatorStyle = .none
         
-        floatButton.imageview.image = Constants.Image.plus
+        addButton.imageview.image = Constants.Image.plus
     }
 }

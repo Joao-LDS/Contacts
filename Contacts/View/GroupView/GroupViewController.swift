@@ -35,15 +35,7 @@ class GroupViewController: UIViewController {
         configureView()
         viewModel.loadGroups()
         delegateTextFields()
-        let defaultUser = UserDefaults.standard
-        let firstLaunch = UserDefaults.standard.bool(forKey: "First Launch")
-        if firstLaunch == true {
-            print("Second")
-            uiview.hintView.isHidden = true
-        } else {
-            print("First")
-            defaultUser.set(true, forKey: "First Launch")
-        }
+        presentHint()
     }
     
     override func loadView() {
@@ -51,6 +43,17 @@ class GroupViewController: UIViewController {
     }
     
     // MARK: - Functions
+    
+    func presentHint() {
+        let userDefaults = UserDefaults.standard
+        let firstLaunch = UserDefaults.standard.bool(forKey: "First Launch")
+        if firstLaunch == true {
+            uiview.hintView.isHidden = true
+        } else {
+            userDefaults.set(true, forKey: "First Launch")
+            uiview.hintView.isHidden = false
+        }
+    }
     
     func setupTableView() {
         uiview.tableView.delegate = self

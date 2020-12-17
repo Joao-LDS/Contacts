@@ -20,9 +20,7 @@ class CoreDataStack {
     static let shared = CoreDataStack()
     var fetchedResultControllerContact: NSFetchedResultsController<Contact>?
     var fetchedResultControllerGroup: NSFetchedResultsController<Group>?
-    var context: NSManagedObjectContext {
-        return Self.persistentContainer.viewContext
-    }
+
     private static var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Contacts")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
@@ -32,6 +30,10 @@ class CoreDataStack {
         })
         return container
     }()
+    
+    var context: NSManagedObjectContext {
+        return Self.persistentContainer.viewContext
+    }
 
     // MARK: - Core Data Functions
 

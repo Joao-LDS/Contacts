@@ -51,7 +51,7 @@ class DetailsViewController: UIViewController {
     func configureView() {
         let contact = viewModel.contact
         
-        uiview.imageView.image = contact.photo as? UIImage
+        uiview.imageView.image = UIImage(data: contact.photo!)
         uiview.nameLabel.text = contact.name
         
         if contact.phone != Constants.String.empty {
