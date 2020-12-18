@@ -38,15 +38,19 @@ class ContactsListTableViewController: UIViewController {
         super.viewDidLoad()
         setupTableView()
         configureView()
-        viewModel.userAlreadyAuthenticated()
-        uiview.searchTextField.delegate = self
         viewModel.delegate = self
+        uiview.searchTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         viewModel.fetchContacts()
         uiview.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
     }
 
     // MARK: - Functions
@@ -130,9 +134,6 @@ extension ContactsListTableViewController: UITextFieldDelegate {
 
 extension ContactsListTableViewController: ContactListViewModelDelegate {
     func presentAuthenticationView() {
-        let viewModel = AuthenticationViewModel()
-        let controller = AuthenticationViewController(viewModel: viewModel)
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true)
+        dismiss(animated: true)
     }
 }

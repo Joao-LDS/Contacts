@@ -29,8 +29,11 @@ class ContactListViewModel {
     }
     
     func deleteContact(at indexPath: IndexPath) {
-        coreDataStack.deleteObject(contacts[indexPath.row])
+        let contact = contacts[indexPath.row]
+        let contactId = contact.id!
+        coreDataStack.deleteObject(contact)
         contacts.remove(at: indexPath.row)
+        FirestoreService.shared.delete(at: contactId)
     }
     
     func filterContacts(_ text: String) {
@@ -55,14 +58,6 @@ class ContactListViewModel {
             return filteredContacts[index]
         } else {
             return contacts[index]
-        }
-    }
-    
-    func userAlreadyAuthenticated() {
-        AuthService().userAlreadyAuthenticated { authenticated in
-            if authenticated == false {
-                self.delegate?.presentAuthenticationView()
-            }
         }
     }
     

@@ -26,4 +26,12 @@ class AuthenticationViewModel {
             self.authViewDelegate?.presentContactListView()
         }
     }
+    
+    func userAlreadyAuthenticated() {
+        AuthService().userAlreadyAuthenticated { authenticated in
+            if authenticated == true {
+                self.authViewDelegate?.presentContactListView()
+            }
+        }
+    }
 }

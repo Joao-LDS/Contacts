@@ -16,15 +16,15 @@ class RegistrationViewModel {
     
     var delegate: SignErrorDelegate?
     
-    func signUpUser(_ email: String,_ password: String,_ passwordAgain: String) {
+    func signUpUser(_ email: String,_ password: String,_ passwordAgain: String, completion: @escaping(Bool) -> Void) {
         if confirmPassword(password, with: passwordAgain) {
-            let user = User()
-            user.email = email
-            user.password = password
-            AuthService().registerUser(user) { sucess, errorDescription in
+            AuthService().registerUser(With: email, password) { sucess, errorDescription in
                 if sucess == false && errorDescription != nil {
                     self.delegate?.showAlertWithError(message: errorDescription!)
+                    completion(false)
+                    return
                 }
+                completion(true)
             }
         }
         

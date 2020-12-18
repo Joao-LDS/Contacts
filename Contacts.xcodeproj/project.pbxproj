@@ -52,7 +52,6 @@
 		E8975D642587B314000E6BCF /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8975D632587B314000E6BCF /* Contants.swift */; };
 		E89AF166258A6F96003F1CAC /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AF165258A6F96003F1CAC /* AuthError.swift */; };
 		E89AF168258A7443003F1CAC /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AF167258A7443003F1CAC /* FirestoreService.swift */; };
-		E89AF16B258A7778003F1CAC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AF16A258A7778003F1CAC /* User.swift */; };
 		E8A599402575BBE500884F3F /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5993F2575BBE500884F3F /* UIAlertController+Extensions.swift */; };
 		E8E5AF492448D96700CF91C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E5AF482448D96700CF91C0 /* MapKit.framework */; };
 		E8FC142F258281DE00DA5A3F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC142E258281DE00DA5A3F /* String+Extension.swift */; };
@@ -134,7 +133,6 @@
 		E8975D632587B314000E6BCF /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 		E89AF165258A6F96003F1CAC /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E89AF167258A7443003F1CAC /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
-		E89AF16A258A7778003F1CAC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E8A5993F2575BBE500884F3F /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		E8E5AF482448D96700CF91C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		E8FC142E258281DE00DA5A3F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -195,7 +193,6 @@
 		79AEDA9123F81AB300B4422A /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				E89AF169258A776E003F1CAC /* Models */,
 				E862CCCD25890370008F5F9B /* Service */,
 				79AEDA9E23F81AB600B4422A /* Info.plist */,
 				E887F2D625811962005482F1 /* Support */,
@@ -417,14 +414,6 @@
 				E88E6526256FD8280072C45C /* CustomTextField.swift */,
 			);
 			path = TextFields;
-			sourceTree = "<group>";
-		};
-		E89AF169258A776E003F1CAC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E89AF16A258A7778003F1CAC /* User.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		E8A5993E2575BB8A00884F3F /* Alert */ = {
@@ -704,7 +693,6 @@
 				79AEDAC523F8323000B4422A /* ContactsListTableViewController.swift in Sources */,
 				E88E6527256FD8280072C45C /* CustomTextField.swift in Sources */,
 				E81FCCDC2571319D00059531 /* DetailsViewModel.swift in Sources */,
-				E89AF16B258A7778003F1CAC /* User.swift in Sources */,
 				E862CCC52588FC41008F5F9B /* AuthenticationViewModel.swift in Sources */,
 				E82613A8256EEF80008C213C /* FormView.swift in Sources */,
 				E887F2DB25814946005482F1 /* MapViewModel.swift in Sources */,

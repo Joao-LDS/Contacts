@@ -12,7 +12,7 @@ import FirebaseAuth
 class AuthError {
     
     func returnErrorDescription(_ error: Error) -> String? {
-        guard let erroCode = AuthErrorCode(rawValue: error._code) else { return nil }
+        guard let erroCode = AuthErrorCode(rawValue: error._code) else { return "Algo deu erro." }
         var errorDescription: String
         switch erroCode {
         case .weakPassword:
@@ -24,8 +24,15 @@ class AuthError {
         case .wrongPassword:
             errorDescription = "A senha está incorreta."
             return errorDescription
+        case .userNotFound:
+            errorDescription = "Não existe usuário cadastrado com esse e-mail."
+            return errorDescription
+        case .emailAlreadyInUse:
+            errorDescription = "Esse e-mail já ese encontra em uso."
+            return errorDescription
         default:
-            return nil
+            return "Algo deu erro."
         }
     }
+
 }

@@ -13,38 +13,49 @@ class AuthService {
     
     let authError = AuthError()
     
-    func registerUser(_ user: User, completion: @escaping(Bool, String?) -> Void) {
-        guard let email = user.email, let password = user.password else { return }
+    func registerUser(With email: String,_ password: String, completion: @escaping(Bool, String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { _, error in
             if let error = error {
                 let errorDescription = self.authError.returnErrorDescription(error)
                 completion(false, errorDescription)
                 return
             }
+            self.verifyEmail { sucess, errorDescription in
+                if sucess == false && errorDescription != nil {
+                    completion(false, errorDescription)
+                    return
+                }
+            }
             completion(true, nil)
         }
     }
     
     func loginUser(_ email: String,_ password: String, completion: @escaping(Bool, String?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { _, error in
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 let errorDescription = self.authError.returnErrorDescription(error)
                 completion(false, errorDescription)
                 return
             }
-            completion(true, nil)
+            if self.isEmailVerified() == true {
+                completion(true, nil)
+            } else {
+                completion(false, "Por favor verifique seu e-mail.")
+            }
         }
     }
     
     func userAlreadyAuthenticated(completion: @escaping(Bool) -> Void) {
-        Auth.auth().addStateDidChangeListener { _, user in
-            let authenticated = user != nil ? true : false
-            if authenticated {
-                completion(true)
-                return
+        if isEmailVerified() == true {
+            Auth.auth().addStateDidChangeListener { _, user in
+                let authenticated = user != nil ? true : false
+                if authenticated {
+                    completion(true)
+                    return
+                }
             }
-            completion(false)
         }
+        completion(false)
     }
     
     func logoutUser() -> Bool {
@@ -54,5 +65,25 @@ class AuthService {
         } catch {
             return false
         }
+    }
+    
+    func verifyEmail(completion: @escaping(Bool, String?) -> Void) {
+        Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+            if let error = error {
+                let errorDescription = self.authError.returnErrorDescription(error)
+                completion(false, errorDescription)
+                return
+            }
+            completion(true, nil)
+        })
+    }
+    
+    func isEmailVerified() -> Bool {
+        guard let verified = Auth.auth().currentUser?.isEmailVerified else { return false}
+        return verified
+    }
+    
+    func userId() -> String {
+        return Auth.auth().currentUser!.uid
     }
 }

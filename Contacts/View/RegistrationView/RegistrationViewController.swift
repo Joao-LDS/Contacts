@@ -38,15 +38,23 @@ class RegistrationViewController: UIViewController {
         uiview.iHaveAnAccountButton.addTarget(self, action: #selector(self.tappedIHaveAnAccount), for: .touchUpInside)
     }
     
+    func dismissRegistrationView() {
+        dismiss(animated: true)
+    }
+    
     @objc func tappedSignUp() {
         guard let password = uiview.passwordTextField.textField.text,
             let passwordAgain = uiview.confirmPasswordTextField.textField.text,
             let email = uiview.emailTextField.textField.text else { return }
-        viewModel.signUpUser(email, password, passwordAgain)
+        viewModel.signUpUser(email, password, passwordAgain) { sucess in
+            if sucess == true {
+                self.dismissRegistrationView()
+            }
+        }
     }
     
     @objc func tappedIHaveAnAccount() {
-        dismiss(animated: true)
+        dismissRegistrationView()
     }
 
 }

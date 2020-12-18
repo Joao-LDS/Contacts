@@ -28,6 +28,7 @@ class AuthenticationViewController: UIViewController {
         configureView()
         viewModel.signErrorDelegate = self
         viewModel.authViewDelegate = self
+        viewModel.userAlreadyAuthenticated()
     }
     
     override func loadView() {
@@ -63,6 +64,9 @@ extension AuthenticationViewController: SignErrorDelegate {
 
 extension AuthenticationViewController: AuthenticationViewModelDelegate {
     func presentContactListView() {
-        dismiss(animated: true)
+        let viewModel = ContactListViewModel()
+        let controller = ContactsListTableViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
     }
 }

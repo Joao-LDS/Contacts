@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        let viewModel = ContactListViewModel()
+        let viewModel = AuthenticationViewModel()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ContactsListTableViewController(viewModel: viewModel)
+        window?.rootViewController = AuthenticationViewController(viewModel: viewModel)
         window?.makeKeyAndVisible()
         
         return true
