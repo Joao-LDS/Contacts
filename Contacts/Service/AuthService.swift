@@ -78,6 +78,17 @@ class AuthService {
         })
     }
     
+    func sendEmailRecoveryPassoword(_ email: String, completion: @escaping(Bool, String?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                let errorDescription = self.authError.returnErrorDescription(error)
+                completion(false, errorDescription)
+                return
+            }
+            completion(true, nil)
+        }
+    }
+    
     func isEmailVerified() -> Bool {
         guard let verified = Auth.auth().currentUser?.isEmailVerified else { return false}
         return verified

@@ -26,7 +26,8 @@ class RegistrationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        viewModel.delegate = self
+        viewModel.signErrorDescription = self
+        viewModel.dismissViewDelegate = self
     }
     
     override func loadView() {
@@ -46,11 +47,7 @@ class RegistrationViewController: UIViewController {
         guard let password = uiview.passwordTextField.textField.text,
             let passwordAgain = uiview.confirmPasswordTextField.textField.text,
             let email = uiview.emailTextField.textField.text else { return }
-        viewModel.signUpUser(email, password, passwordAgain) { sucess in
-            if sucess == true {
-                self.dismissRegistrationView()
-            }
-        }
+        viewModel.signUpUser(email, password, passwordAgain)
     }
     
     @objc func tappedIHaveAnAccount() {
@@ -63,5 +60,11 @@ extension RegistrationViewController: SignErrorDelegate {
     func showAlertWithError(message: String) {
         let alert = UIAlertController().create(title: nil, message: message, preferredStyle: .alert, actions: [])
         present(alert, animated: true)
+    }
+}
+
+extension RegistrationViewController: DismissViewDelegate {
+    func dismissRecoveryView() {
+        dismiss(animated: true)
     }
 }

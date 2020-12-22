@@ -12,19 +12,23 @@ protocol SignErrorDelegate {
     func showAlertWithError(message: String)
 }
 
+protocol DismissViewDelegate {
+    func dismissRecoveryView()
+}
+
 class RegistrationViewModel {
     
-    var delegate: SignErrorDelegate?
+    var signErrorDescription: SignErrorDelegate?
+    var dismissViewDelegate: DismissViewDelegate?
     
-    func signUpUser(_ email: String,_ password: String,_ passwordAgain: String, completion: @escaping(Bool) -> Void) {
+    func signUpUser(_ email: String,_ password: String,_ passwordAgain: String) {
         if confirmPassword(password, with: passwordAgain) {
             AuthService().registerUser(With: email, password) { sucess, errorDescription in
                 if sucess == false && errorDescription != nil {
-                    self.delegate?.showAlertWithError(message: errorDescription!)
-                    completion(false)
+                    self.signErrorDescription?.showAlertWithError(message: errorDescription!)
                     return
                 }
-                completion(true)
+                self.dismissViewDelegate?.dismissRecoveryView()
             }
         }
         
@@ -34,7 +38,7 @@ class RegistrationViewModel {
         if first == second {
             return true
         } else {
-            delegate?.showAlertWithError(message: "As senhas não são iguais.")
+            signErrorDescription?.showAlertWithError(message: "As senhas não são iguais.")
             return false
         }
     }

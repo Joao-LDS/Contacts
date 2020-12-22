@@ -38,6 +38,7 @@ class AuthenticationViewController: UIViewController {
     func configureView() {
         uiview.dontHaveAnAccountButton.addTarget(self, action: #selector(self.tappedCreateAnAccount), for: .touchUpInside)
         uiview.signButton.addTarget(self, action: #selector(self.tappedSignInUser), for: .touchUpInside)
+        uiview.forgotPasswordButton.addTarget(self, action: #selector(self.tappedForgotPassword), for: .touchUpInside)
     }
     
     @objc func tappedSignInUser() {
@@ -45,6 +46,13 @@ class AuthenticationViewController: UIViewController {
             let password = uiview.passwordTextField.textField.text else { return }
         
         viewModel.signInUser(email, password)
+    }
+    
+    @objc func tappedForgotPassword() {
+        let viewModel = RecoveryPasswordViewModel()
+        let controller = RecoveryPasswordViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
     }
     
     @objc func tappedCreateAnAccount() {
