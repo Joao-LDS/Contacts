@@ -36,21 +36,17 @@ class ContactsListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ManagerContact().managerSynchronization()
         setupTableView()
         configureView()
         viewModel.delegate = self
         uiview.searchTextField.delegate = self
+        configureObserverCoredata()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         viewModel.fetchContacts()
-        uiview.tableView.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
     }
 
     // MARK: - Functions
@@ -66,6 +62,13 @@ class ContactsListTableViewController: UIViewController {
         uiview.searchTextField.addTarget(self, action: #selector(self.searchChange(_:)), for: .editingChanged)
         uiview.logoutButton.addTarget(self, action: #selector(self.tappedLogout), for: .touchUpInside)
         uiview.dismissKeyboardWhenTapView()
+    }
+    
+    func configureObserverCoredata() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reloadTableView),
+                                               name: Notification.Name.NSManagedObjectContextDidSave,
+                                               object: nil)
     }
     
     // MARK: - Selectors
@@ -84,6 +87,11 @@ class ContactsListTableViewController: UIViewController {
     
     @objc func tappedLogout() {
         viewModel.logout()
+    }
+    
+    @objc func reloadTableView(_ notification: Notification) {
+        viewModel.fetchContacts()
+        uiview.tableView.reloadData()
     }
 
 }
@@ -119,7 +127,7 @@ extension ContactsListTableViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             viewModel.deleteContact(at: indexPath)
-            uiview.tableView.deleteRows(at: [indexPath], with: .bottom)
+//            uiview.tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }
 }

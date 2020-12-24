@@ -9,10 +9,6 @@
 import Foundation
 import CoreData
 
-enum TypeObject {
-    case Contact, Group
-}
-
 class CoreDataStack {
     
     // MARK: - Core Data Properties
@@ -21,8 +17,17 @@ class CoreDataStack {
     var fetchedResultControllerContact: NSFetchedResultsController<Contact>?
     var fetchedResultControllerGroup: NSFetchedResultsController<Group>?
 
-    private static var persistentContainer: NSPersistentContainer = {
+    // MARK: - Core Data Functions
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        
         let container = NSPersistentContainer(name: "Contacts")
+        let url = DocumentDirectory().urlToCoreData()
+        let description = NSPersistentStoreDescription(url: url)
+        description.shouldInferMappingModelAutomatically = true
+        description.shouldMigrateStoreAutomatically = true
+        description.setOption(FileProtectionType.completeUnlessOpen as NSObject, forKey: NSPersistentStoreFileProtectionKey)
+        container.persistentStoreDescriptions = [description]
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -32,17 +37,19 @@ class CoreDataStack {
     }()
     
     var context: NSManagedObjectContext {
-        return Self.persistentContainer.viewContext
+        return self.persistentContainer.viewContext
     }
-
-    // MARK: - Core Data Functions
+    
+    var entity: NSEntityDescription {
+        let entity = NSEntityDescription.entity(forEntityName: "Contact", in: context)
+        return entity!
+    }
 
     func save() {
         do {
             try context.save()
-        } catch {
-            print(error.localizedDescription)
-        }
+        } catch { }
+        
     }
     
     func deleteObject(_ object: NSManagedObject) {
@@ -54,8 +61,8 @@ class CoreDataStack {
         let sort = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<Contact> = Contact.fetchRequest()
         request.sortDescriptors = [sort]
-        fetchedResultControllerContact = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-        
+        fetchedResultControllerContact = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
+
         do {
             try fetchedResultControllerContact?.performFetch()
             return fetchedResultControllerContact?.fetchedObjects
@@ -69,7 +76,7 @@ class CoreDataStack {
         let sort = NSSortDescriptor(key: "name", ascending: true)
         let request: NSFetchRequest<Group> = Group.fetchRequest()
         request.sortDescriptors = [sort]
-        fetchedResultControllerGroup = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultControllerGroup = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.context, sectionNameKeyPath: nil, cacheName: nil)
         
         do {
             try fetchedResultControllerGroup?.performFetch()

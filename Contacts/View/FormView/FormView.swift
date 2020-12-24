@@ -149,6 +149,7 @@ extension FormView: ConfigureView {
         bottomView.shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.5)
         
         imageView.image = Constants.Image.userDefaultImage
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 75
         imageView.layer.masksToBounds = true
         imageView.isUserInteractionEnabled = true

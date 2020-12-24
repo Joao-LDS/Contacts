@@ -29,6 +29,7 @@ class AuthenticationViewController: UIViewController {
         viewModel.signErrorDelegate = self
         viewModel.authViewDelegate = self
         viewModel.userAlreadyAuthenticated()
+        uiview.passwordTextField.textField.delegate = self
     }
     
     override func loadView() {
@@ -76,5 +77,11 @@ extension AuthenticationViewController: AuthenticationViewModelDelegate {
         let controller = ContactsListTableViewController(viewModel: viewModel)
         controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
+    }
+}
+
+extension AuthenticationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
 }

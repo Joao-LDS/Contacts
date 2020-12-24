@@ -31,9 +31,10 @@ class ContactListViewModel {
     func deleteContact(at indexPath: IndexPath) {
         let contact = contacts[indexPath.row]
         let contactId = contact.id!
-        coreDataStack.deleteObject(contact)
         contacts.remove(at: indexPath.row)
+        coreDataStack.deleteObject(contact)
         FirestoreService.shared.delete(at: contactId)
+        FirestorageService().delete(at: contactId)
     }
     
     func filterContacts(_ text: String) {

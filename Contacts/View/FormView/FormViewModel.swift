@@ -21,6 +21,7 @@ class FormViewModel {
     var contact: Contact?
     lazy var isEdit = self.contact != nil ? true : false
     let firestoreService = FirestoreService.shared
+    let firestorageService = FirestorageService.shared
     
     // MARK: - Init
     
@@ -39,7 +40,7 @@ class FormViewModel {
             return false
         }
         if isEdit == false {
-            self.contact = Contact(context: coreData.context)
+            self.contact = Contact(entity: coreData.entity, insertInto: coreData.context)
             contact?.id = UUID().uuidString
         }
         
@@ -59,17 +60,21 @@ class FormViewModel {
         coreData.save()
         
         let id = contact!.id!
+        let groupName = group?.name ?? ""
         let values: [String: Any] = ["id": id,
                                      "name": name,
                                      "phone": phone,
                                      "email": email,
-                                     "address": address]
+                                     "address": address,
+                                     "group": groupName]
         
         if isEdit == true {
             firestoreService.update(at: contact!.id!, with: values)
         } else {
             firestoreService.write(values)
         }
+        
+        firestorageService.upload(photo, idContact: id)
         
         return true
     }

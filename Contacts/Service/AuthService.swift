@@ -12,6 +12,7 @@ import FirebaseAuth
 class AuthService {
     
     let authError = AuthError()
+    var authListener: AuthStateDidChangeListenerHandle!
     
     func registerUser(With email: String,_ password: String, completion: @escaping(Bool, String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { _, error in
@@ -47,7 +48,7 @@ class AuthService {
     
     func userAlreadyAuthenticated(completion: @escaping(Bool) -> Void) {
         if isEmailVerified() == true {
-            Auth.auth().addStateDidChangeListener { _, user in
+            self.authListener = Auth.auth().addStateDidChangeListener { _, user in
                 let authenticated = user != nil ? true : false
                 if authenticated {
                     completion(true)
@@ -55,6 +56,7 @@ class AuthService {
                 }
             }
         }
+//        Auth.auth().removeStateDidChangeListener(self.authListener)
         completion(false)
     }
     

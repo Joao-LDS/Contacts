@@ -44,14 +44,44 @@ class FirestoreService {
         }
     }
     
-    func fetch(at id: String) {
+    func fetch(at id: String, completion: @escaping([[String: Any]]?) -> Void) {
         dbRef.collection(id).getDocuments { snapshot, error in
             if let documents = snapshot?.documents {
+                var valuesArray: [[String: Any]] = []
                 for document in documents {
                     let values = document.data()
-                    let id = document.documentID
-                    print(values, id)
+                    valuesArray.append(values)
                 }
+                completion(valuesArray)
+                return
+            }
+            completion(nil)
+        }
+    }
+    
+    func fetchContactById(at id: String, completion: @escaping([String: Any]?) -> Void) {
+        dbRef.collection(self.userId).whereField("id", isEqualTo: id).getDocuments { snapshot, error in
+            if let documents = snapshot?.documents {
+                completion(documents[0].data())
+                return
+            }
+            completion(nil)
+        }
+    }
+    
+    func fetchAll(completion: @escaping([[String: Any]]) -> Void) {
+        dbRef.collection(self.userId).whereField("id", isNotEqualTo: "").getDocuments { snapshot, error in
+            var values: [[String: Any]] = []
+            if let error = error {
+                print(error.localizedDescription)
+            } else if let documents = snapshot?.documents {
+                for doc in documents {
+                    let value = doc.data()
+                    values.append(value)
+                }
+                completion(values)
+            } else {
+                completion(values)
             }
         }
     }

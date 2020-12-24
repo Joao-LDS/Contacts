@@ -1,5 +1,5 @@
 //
-//  ContactsTests.swift
+//  ContactListViewController.swift
 //  ContactsTests
 //
 //  Created by João Santos on 15/02/20.
@@ -9,8 +9,7 @@
 import XCTest
 @testable import Contacts
 
-class ContactsTests: XCTestCase {
+class ContactListViewController: XCTestCase {
 
-    
 
 }

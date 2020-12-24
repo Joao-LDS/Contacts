@@ -203,10 +203,15 @@ class FormViewController: UIViewController {
 
 extension FormViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage { // A img selecionada fica dentro do dic info, é recuperada e convertida para UIImage
-            uiview.imageView.image = image
-            dismiss(animated: true, completion: nil)
+        // A img selecionada fica dentro do dic info, é recuperada e convertida para UIImage
+        var image: UIImage?
+        if let url = info[.imageURL] as? URL {
+            image = Downsampler().downsampleImage(from: url, frameSize: uiview.imageView.bounds.size)
+        } else if let originalImage = info[.originalImage] as? UIImage, let imageData = originalImage.pngData() {
+            image = Downsampler().downsampleImage(from: imageData, frameSize: uiview.imageView.bounds.size)
         }
+        uiview.imageView.image = image
+        dismiss(animated: true, completion: nil)
     }
 }
 

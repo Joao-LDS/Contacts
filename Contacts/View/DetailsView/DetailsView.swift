@@ -180,6 +180,7 @@ extension DetailsView: ConfigureView {
         bottomView.shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 8, shadowOpacity: 0.5)
         
         imageView.layer.cornerRadius = 75
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.isUserInteractionEnabled = true
         
