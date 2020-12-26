@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FCBFA56232ACECA615D3341 /* Pods_Contacts_ContactsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEB1FDFF3D1DF46B6E6D893 /* Pods_Contacts_ContactsUITests.framework */; };
-		11046154E49D54F689293092 /* Pods_ContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A68E57833304046C5393E079 /* Pods_ContactsTests.framework */; };
+		07A4D149B8E3481310DF745F /* Pods_Contacts_ContactsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A22597F7C3F128128A8686A7 /* Pods_Contacts_ContactsUITests.framework */; };
+		270E633187EE1B621C6B5904 /* Pods_Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7275983181D583C8CE180870 /* Pods_Contacts.framework */; };
+		4DDB06EDAAB10D67E1355EF2 /* Pods_ContactsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F4F9A066B69B97B0C59DF2 /* Pods_ContactsTests.framework */; };
 		7960ACAC23F986C700177EC2 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7960ACAB23F986C700177EC2 /* DetailsViewController.swift */; };
 		798FD6D82402BCB9003F1D81 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798FD6D72402BCB9003F1D81 /* ContactTableViewCell.swift */; };
 		79AEDA9323F81AB400B4422A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDA9223F81AB300B4422A /* AppDelegate.swift */; };
 		79AEDA9523F81AB400B4422A /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDA9423F81AB400B4422A /* FormViewController.swift */; };
 		79AEDA9A23F81AB600B4422A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79AEDA9923F81AB600B4422A /* Assets.xcassets */; };
 		79AEDA9D23F81AB600B4422A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79AEDA9B23F81AB600B4422A /* LaunchScreen.storyboard */; };
-		79AEDAA823F81AB600B4422A /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDAA723F81AB600B4422A /* ContactsTests.swift */; };
+		79AEDAA823F81AB600B4422A /* ContactListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDAA723F81AB600B4422A /* ContactListViewController.swift */; };
 		79AEDAB323F81AB600B4422A /* ContactsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDAB223F81AB600B4422A /* ContactsUITests.swift */; };
 		79AEDAC523F8323000B4422A /* ContactsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AEDAC423F8323000B4422A /* ContactsListTableViewController.swift */; };
 		E81FCCDC2571319D00059531 /* DetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81FCCDB2571319D00059531 /* DetailsViewModel.swift */; };
@@ -33,16 +34,35 @@
 		E82613A8256EEF80008C213C /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82613A7256EEF80008C213C /* FormView.swift */; };
 		E82613AA256EEF8A008C213C /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82613A9256EEF8A008C213C /* FormViewModel.swift */; };
 		E84DCA1D2435270A00A9EDF4 /* Contacts.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E84DCA1B2435270A00A9EDF4 /* Contacts.xcdatamodeld */; };
+		E862CCC12588F8F2008F5F9B /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCC02588F8F2008F5F9B /* AuthenticationViewController.swift */; };
+		E862CCC32588F909008F5F9B /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCC22588F909008F5F9B /* AuthenticationView.swift */; };
+		E862CCC52588FC41008F5F9B /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCC42588FC41008F5F9B /* AuthenticationViewModel.swift */; };
+		E862CCC82588FEE6008F5F9B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCC72588FEE6008F5F9B /* RegistrationViewController.swift */; };
+		E862CCCA2588FEF5008F5F9B /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCC92588FEF5008F5F9B /* RegistrationView.swift */; };
+		E862CCCC2588FEFC008F5F9B /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCCB2588FEFC008F5F9B /* RegistrationViewModel.swift */; };
+		E862CCCF25890385008F5F9B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862CCCE25890385008F5F9B /* AuthService.swift */; };
 		E8631D50244E1B8F00E8A230 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8631D4F244E1B8F00E8A230 /* Location.swift */; };
 		E869711D244A23AA008A29FC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E869711C244A23AA008A29FC /* Message.swift */; };
+		E86D5E6725938FE800CBD978 /* ManagerContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D5E6625938FE800CBD978 /* ManagerContact.swift */; };
+		E86D5E6A2593B3C300CBD978 /* DocumentDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D5E692593B3C300CBD978 /* DocumentDirectory.swift */; };
 		E86E3FA524450A7D00D03AA5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86E3FA424450A7D00D03AA5 /* MapViewController.swift */; };
+		E8724E8D2592375600623F7A /* FirestorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8724E8C2592375600623F7A /* FirestorageService.swift */; };
+		E8724E8F2592429200623F7A /* Downsampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8724E8E2592429200623F7A /* Downsampler.swift */; };
+		E887F2D92581493C005482F1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887F2D82581493C005482F1 /* MapView.swift */; };
+		E887F2DB25814946005482F1 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887F2DA25814946005482F1 /* MapViewModel.swift */; };
 		E88E6527256FD8280072C45C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E6526256FD8280072C45C /* CustomTextField.swift */; };
-		E88E6529256FF7090072C45C /* OkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E6528256FF7090072C45C /* OkButton.swift */; };
 		E88E652B25700FA80072C45C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E652A25700FA80072C45C /* UIView+Extension.swift */; };
 		E88E652D257042DC0072C45C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88E652C257042DC0072C45C /* CoreDataStack.swift */; };
+		E8975D642587B314000E6BCF /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8975D632587B314000E6BCF /* Contants.swift */; };
+		E89AF166258A6F96003F1CAC /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AF165258A6F96003F1CAC /* AuthError.swift */; };
+		E89AF168258A7443003F1CAC /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89AF167258A7443003F1CAC /* FirestoreService.swift */; };
 		E8A599402575BBE500884F3F /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A5993F2575BBE500884F3F /* UIAlertController+Extensions.swift */; };
+		E8A6E9DA25910E7900945324 /* RecoveryPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6E9D925910E7900945324 /* RecoveryPasswordViewController.swift */; };
+		E8A6E9DD25910E9E00945324 /* RecoveryPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6E9DC25910E9E00945324 /* RecoveryPasswordView.swift */; };
+		E8A6E9DF25910EAD00945324 /* RecoveryPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A6E9DE25910EAD00945324 /* RecoveryPasswordViewModel.swift */; };
 		E8E5AF492448D96700CF91C0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E5AF482448D96700CF91C0 /* MapKit.framework */; };
-		F506E9D36EE651175E8A7A85 /* Pods_Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B899C8A9626BC177DB2A4DBE /* Pods_Contacts.framework */; };
+		E8FC142F258281DE00DA5A3F /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC142E258281DE00DA5A3F /* String+Extension.swift */; };
+		E8FC14312582913A00DA5A3F /* ViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC14302582913A00DA5A3F /* ViewDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,9 +83,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08A4DC654E362C0A1B8E532A /* Pods-Contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.debug.xcconfig"; path = "Target Support Files/Pods-Contacts/Pods-Contacts.debug.xcconfig"; sourceTree = "<group>"; };
-		2CEB1FDFF3D1DF46B6E6D893 /* Pods_Contacts_ContactsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contacts_ContactsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		467BF63F2EA70B0DE2623E9E /* Pods-Contacts-ContactsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts-ContactsUITests.release.xcconfig"; path = "Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		0EAAF3A7C39F82F5AAC7C824 /* Pods-ContactsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsTests.release.xcconfig"; path = "Target Support Files/Pods-ContactsTests/Pods-ContactsTests.release.xcconfig"; sourceTree = "<group>"; };
+		0ECEBBCDEA2D24E86CE9D18E /* Pods-Contacts-ContactsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts-ContactsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		14F4F9A066B69B97B0C59DF2 /* Pods_ContactsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AD1C731F644A37DE7F43AA1 /* Pods-ContactsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsTests.debug.xcconfig"; path = "Target Support Files/Pods-ContactsTests/Pods-ContactsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		46B0B48C79A6E8E85DF6ACCB /* Pods-Contacts-ContactsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts-ContactsUITests.release.xcconfig"; path = "Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		7275983181D583C8CE180870 /* Pods_Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7960ACAB23F986C700177EC2 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		798FD6D72402BCB9003F1D81 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		79AEDA8F23F81AB300B4422A /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,17 +98,15 @@
 		79AEDA9C23F81AB600B4422A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79AEDA9E23F81AB600B4422A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79AEDAA323F81AB600B4422A /* ContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		79AEDAA723F81AB600B4422A /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
+		79AEDAA723F81AB600B4422A /* ContactListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewController.swift; sourceTree = "<group>"; };
 		79AEDAA923F81AB600B4422A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79AEDAAE23F81AB600B4422A /* ContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79AEDAB223F81AB600B4422A /* ContactsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsUITests.swift; sourceTree = "<group>"; };
 		79AEDAB423F81AB600B4422A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79AEDAC423F8323000B4422A /* ContactsListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListTableViewController.swift; sourceTree = "<group>"; };
-		9AFB753644F1472C490F9CD8 /* Pods-ContactsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsTests.debug.xcconfig"; path = "Target Support Files/Pods-ContactsTests/Pods-ContactsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A68E57833304046C5393E079 /* Pods_ContactsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8A49A25A3B366DF3EA5ECF2 /* Pods-Contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.release.xcconfig"; path = "Target Support Files/Pods-Contacts/Pods-Contacts.release.xcconfig"; sourceTree = "<group>"; };
-		B899C8A9626BC177DB2A4DBE /* Pods_Contacts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contacts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6F69C2CAAE8DD0277B8F039 /* Pods-ContactsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactsTests.release.xcconfig"; path = "Target Support Files/Pods-ContactsTests/Pods-ContactsTests.release.xcconfig"; sourceTree = "<group>"; };
+		85ED094E3EEC32C6A9754111 /* Pods-Contacts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.debug.xcconfig"; path = "Target Support Files/Pods-Contacts/Pods-Contacts.debug.xcconfig"; sourceTree = "<group>"; };
+		A22597F7C3F128128A8686A7 /* Pods_Contacts_ContactsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Contacts_ContactsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A62433954F8B8E0614ECE734 /* Pods-Contacts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts.release.xcconfig"; path = "Target Support Files/Pods-Contacts/Pods-Contacts.release.xcconfig"; sourceTree = "<group>"; };
 		E81FCCDB2571319D00059531 /* DetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewModel.swift; sourceTree = "<group>"; };
 		E81FCCDD257131BB00059531 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		E81FCCDF25715DA600059531 /* GroupButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupButton.swift; sourceTree = "<group>"; };
@@ -101,16 +122,35 @@
 		E82613A7256EEF80008C213C /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		E82613A9256EEF8A008C213C /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		E84DCA1C2435270A00A9EDF4 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		E862CCC02588F8F2008F5F9B /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		E862CCC22588F909008F5F9B /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		E862CCC42588FC41008F5F9B /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		E862CCC72588FEE6008F5F9B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		E862CCC92588FEF5008F5F9B /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		E862CCCB2588FEFC008F5F9B /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		E862CCCE25890385008F5F9B /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		E8631D4F244E1B8F00E8A230 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E869711C244A23AA008A29FC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		E86D5E6625938FE800CBD978 /* ManagerContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerContact.swift; sourceTree = "<group>"; };
+		E86D5E692593B3C300CBD978 /* DocumentDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDirectory.swift; sourceTree = "<group>"; };
 		E86E3FA424450A7D00D03AA5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E8724E8C2592375600623F7A /* FirestorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestorageService.swift; sourceTree = "<group>"; };
+		E8724E8E2592429200623F7A /* Downsampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downsampler.swift; sourceTree = "<group>"; };
+		E887F2D82581493C005482F1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E887F2DA25814946005482F1 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		E88E6526256FD8280072C45C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		E88E6528256FF7090072C45C /* OkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkButton.swift; sourceTree = "<group>"; };
 		E88E652A25700FA80072C45C /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E88E652C257042DC0072C45C /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E8975D632587B314000E6BCF /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
+		E89AF165258A6F96003F1CAC /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		E89AF167258A7443003F1CAC /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		E8A5993F2575BBE500884F3F /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
+		E8A6E9D925910E7900945324 /* RecoveryPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPasswordViewController.swift; sourceTree = "<group>"; };
+		E8A6E9DC25910E9E00945324 /* RecoveryPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPasswordView.swift; sourceTree = "<group>"; };
+		E8A6E9DE25910EAD00945324 /* RecoveryPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryPasswordViewModel.swift; sourceTree = "<group>"; };
 		E8E5AF482448D96700CF91C0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		F06DE0FB772015B17698B8F2 /* Pods-Contacts-ContactsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Contacts-ContactsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E8FC142E258281DE00DA5A3F /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		E8FC14302582913A00DA5A3F /* ViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8E5AF492448D96700CF91C0 /* MapKit.framework in Frameworks */,
-				F506E9D36EE651175E8A7A85 /* Pods_Contacts.framework in Frameworks */,
+				270E633187EE1B621C6B5904 /* Pods_Contacts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11046154E49D54F689293092 /* Pods_ContactsTests.framework in Frameworks */,
+				4DDB06EDAAB10D67E1355EF2 /* Pods_ContactsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FCBFA56232ACECA615D3341 /* Pods_Contacts_ContactsUITests.framework in Frameworks */,
+				07A4D149B8E3481310DF745F /* Pods_Contacts_ContactsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,16 +207,12 @@
 		79AEDA9123F81AB300B4422A /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				E826139B256EC25C008C213C /* Utils */,
-				79AEDAC123F82E8400B4422A /* Models */,
-				79AEDAC623F83BAD00B4422A /* View */,
-				79AEDAC023F81D4C00B4422A /* Controllers */,
-				79AEDA9223F81AB300B4422A /* AppDelegate.swift */,
-				79AEDA9923F81AB600B4422A /* Assets.xcassets */,
-				79AEDA9B23F81AB600B4422A /* LaunchScreen.storyboard */,
 				79AEDA9E23F81AB600B4422A /* Info.plist */,
-				E8261397256EA90A008C213C /* GoogleService-Info.plist */,
-				E88E652C257042DC0072C45C /* CoreDataStack.swift */,
+				E862CCCD25890370008F5F9B /* Service */,
+				E887F2D625811962005482F1 /* Support */,
+				E826139B256EC25C008C213C /* Utils */,
+				79AEDAC123F82E8400B4422A /* CoreData */,
+				79AEDAC623F83BAD00B4422A /* View */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -184,7 +220,7 @@
 		79AEDAA623F81AB600B4422A /* ContactsTests */ = {
 			isa = PBXGroup;
 			children = (
-				79AEDAA723F81AB600B4422A /* ContactsTests.swift */,
+				79AEDAA723F81AB600B4422A /* ContactListViewController.swift */,
 				79AEDAA923F81AB600B4422A /* Info.plist */,
 			);
 			path = ContactsTests;
@@ -199,29 +235,24 @@
 			path = ContactsUITests;
 			sourceTree = "<group>";
 		};
-		79AEDAC023F81D4C00B4422A /* Controllers */ = {
+		79AEDAC123F82E8400B4422A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				E86E3FA424450A7D00D03AA5 /* MapViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		79AEDAC123F82E8400B4422A /* Models */ = {
-			isa = PBXGroup;
-			children = (
+				E88E652C257042DC0072C45C /* CoreDataStack.swift */,
 				E84DCA1B2435270A00A9EDF4 /* Contacts.xcdatamodeld */,
-				E8631D4F244E1B8F00E8A230 /* Location.swift */,
-				E869711C244A23AA008A29FC /* Message.swift */,
 			);
-			path = Models;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		79AEDAC623F83BAD00B4422A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E8A6E9DB25910E8300945324 /* RecoveryPasswordView */,
+				E862CCC62588FEAC008F5F9B /* RegistrationView */,
+				E862CCBF2588F8CD008F5F9B /* AuthenticationView */,
 				E826139E256EC376008C213C /* ContactListView */,
 				E82613A6256EEF69008C213C /* FormView */,
+				E887F2D7258119C5005482F1 /* MapView */,
 				E81FCCD925712EC000059531 /* DetailsView */,
 				E81FCCE12571799B00059531 /* GroupView */,
 				E82613A2256ED291008C213C /* Components */,
@@ -232,12 +263,12 @@
 		9D1D58AE5533FAB6F5941BAF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				08A4DC654E362C0A1B8E532A /* Pods-Contacts.debug.xcconfig */,
-				A8A49A25A3B366DF3EA5ECF2 /* Pods-Contacts.release.xcconfig */,
-				F06DE0FB772015B17698B8F2 /* Pods-Contacts-ContactsUITests.debug.xcconfig */,
-				467BF63F2EA70B0DE2623E9E /* Pods-Contacts-ContactsUITests.release.xcconfig */,
-				9AFB753644F1472C490F9CD8 /* Pods-ContactsTests.debug.xcconfig */,
-				D6F69C2CAAE8DD0277B8F039 /* Pods-ContactsTests.release.xcconfig */,
+				85ED094E3EEC32C6A9754111 /* Pods-Contacts.debug.xcconfig */,
+				A62433954F8B8E0614ECE734 /* Pods-Contacts.release.xcconfig */,
+				0ECEBBCDEA2D24E86CE9D18E /* Pods-Contacts-ContactsUITests.debug.xcconfig */,
+				46B0B48C79A6E8E85DF6ACCB /* Pods-Contacts-ContactsUITests.release.xcconfig */,
+				1AD1C731F644A37DE7F43AA1 /* Pods-ContactsTests.debug.xcconfig */,
+				0EAAF3A7C39F82F5AAC7C824 /* Pods-ContactsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -265,8 +296,13 @@
 		E826139B256EC25C008C213C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				E8631D4F244E1B8F00E8A230 /* Location.swift */,
 				E826139C256EC269008C213C /* ConfigureView.swift */,
 				E88E652A25700FA80072C45C /* UIView+Extension.swift */,
+				E8FC142E258281DE00DA5A3F /* String+Extension.swift */,
+				E8975D632587B314000E6BCF /* Contants.swift */,
+				E8724E8E2592429200623F7A /* Downsampler.swift */,
+				E86D5E692593B3C300CBD978 /* DocumentDirectory.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -293,6 +329,8 @@
 		E82613A2256ED291008C213C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E878FFB92583EE8800231FBF /* View */,
+				E887F2D5258118C4005482F1 /* Message */,
 				E8A5993E2575BB8A00884F3F /* Alert */,
 				E88E6525256FD80C0072C45C /* TextFields */,
 				E82613A3256ED2A1008C213C /* Buttons */,
@@ -305,7 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				E82613A4256ED2BA008C213C /* FloatButton.swift */,
-				E88E6528256FF7090072C45C /* OkButton.swift */,
 				E81FCCDF25715DA600059531 /* GroupButton.swift */,
 			);
 			path = Buttons;
@@ -319,6 +356,75 @@
 				E82613A9256EEF8A008C213C /* FormViewModel.swift */,
 			);
 			path = FormView;
+			sourceTree = "<group>";
+		};
+		E862CCBF2588F8CD008F5F9B /* AuthenticationView */ = {
+			isa = PBXGroup;
+			children = (
+				E862CCC02588F8F2008F5F9B /* AuthenticationViewController.swift */,
+				E862CCC22588F909008F5F9B /* AuthenticationView.swift */,
+				E862CCC42588FC41008F5F9B /* AuthenticationViewModel.swift */,
+			);
+			path = AuthenticationView;
+			sourceTree = "<group>";
+		};
+		E862CCC62588FEAC008F5F9B /* RegistrationView */ = {
+			isa = PBXGroup;
+			children = (
+				E862CCC72588FEE6008F5F9B /* RegistrationViewController.swift */,
+				E862CCC92588FEF5008F5F9B /* RegistrationView.swift */,
+				E862CCCB2588FEFC008F5F9B /* RegistrationViewModel.swift */,
+			);
+			path = RegistrationView;
+			sourceTree = "<group>";
+		};
+		E862CCCD25890370008F5F9B /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E862CCCE25890385008F5F9B /* AuthService.swift */,
+				E89AF165258A6F96003F1CAC /* AuthError.swift */,
+				E89AF167258A7443003F1CAC /* FirestoreService.swift */,
+				E8724E8C2592375600623F7A /* FirestorageService.swift */,
+				E86D5E6625938FE800CBD978 /* ManagerContact.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E878FFB92583EE8800231FBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E8FC14302582913A00DA5A3F /* ViewDetail.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E887F2D5258118C4005482F1 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				E869711C244A23AA008A29FC /* Message.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		E887F2D625811962005482F1 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				79AEDA9923F81AB600B4422A /* Assets.xcassets */,
+				79AEDA9B23F81AB600B4422A /* LaunchScreen.storyboard */,
+				E8261397256EA90A008C213C /* GoogleService-Info.plist */,
+				79AEDA9223F81AB300B4422A /* AppDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E887F2D7258119C5005482F1 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				E86E3FA424450A7D00D03AA5 /* MapViewController.swift */,
+				E887F2D82581493C005482F1 /* MapView.swift */,
+				E887F2DA25814946005482F1 /* MapViewModel.swift */,
+			);
+			path = MapView;
 			sourceTree = "<group>";
 		};
 		E88E6525256FD80C0072C45C /* TextFields */ = {
@@ -337,13 +443,23 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		E8A6E9DB25910E8300945324 /* RecoveryPasswordView */ = {
+			isa = PBXGroup;
+			children = (
+				E8A6E9D925910E7900945324 /* RecoveryPasswordViewController.swift */,
+				E8A6E9DC25910E9E00945324 /* RecoveryPasswordView.swift */,
+				E8A6E9DE25910EAD00945324 /* RecoveryPasswordViewModel.swift */,
+			);
+			path = RecoveryPasswordView;
+			sourceTree = "<group>";
+		};
 		E8E5AF472448D96600CF91C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				E8E5AF482448D96700CF91C0 /* MapKit.framework */,
-				B899C8A9626BC177DB2A4DBE /* Pods_Contacts.framework */,
-				2CEB1FDFF3D1DF46B6E6D893 /* Pods_Contacts_ContactsUITests.framework */,
-				A68E57833304046C5393E079 /* Pods_ContactsTests.framework */,
+				7275983181D583C8CE180870 /* Pods_Contacts.framework */,
+				A22597F7C3F128128A8686A7 /* Pods_Contacts_ContactsUITests.framework */,
+				14F4F9A066B69B97B0C59DF2 /* Pods_ContactsTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -355,11 +471,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79AEDAB723F81AB600B4422A /* Build configuration list for PBXNativeTarget "Contacts" */;
 			buildPhases = (
-				401989AD5DCDF98F835A192F /* [CP] Check Pods Manifest.lock */,
+				FC301609CFF9A9A0AF51D1C9 /* [CP] Check Pods Manifest.lock */,
 				79AEDA8B23F81AB300B4422A /* Sources */,
 				79AEDA8C23F81AB300B4422A /* Frameworks */,
 				79AEDA8D23F81AB300B4422A /* Resources */,
-				3F5D1D22DF4BE3BAEAEFE40A /* [CP] Embed Pods Frameworks */,
+				5B75E172AA9E20270823FBAB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -374,7 +490,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79AEDABA23F81AB600B4422A /* Build configuration list for PBXNativeTarget "ContactsTests" */;
 			buildPhases = (
-				6B03D2CE186BA8E59BFB3BA3 /* [CP] Check Pods Manifest.lock */,
+				8C9309DBC55FAF59F5D6E152 /* [CP] Check Pods Manifest.lock */,
 				79AEDA9F23F81AB600B4422A /* Sources */,
 				79AEDAA023F81AB600B4422A /* Frameworks */,
 				79AEDAA123F81AB600B4422A /* Resources */,
@@ -393,11 +509,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 79AEDABD23F81AB600B4422A /* Build configuration list for PBXNativeTarget "ContactsUITests" */;
 			buildPhases = (
-				75476FB7DE815A62DA397C05 /* [CP] Check Pods Manifest.lock */,
+				F61C579D0501CB10FD4F64F8 /* [CP] Check Pods Manifest.lock */,
 				79AEDAAA23F81AB600B4422A /* Sources */,
 				79AEDAAB23F81AB600B4422A /* Frameworks */,
 				79AEDAAC23F81AB600B4422A /* Resources */,
-				890AFBC1EF99C4DBC332D932 /* [CP] Embed Pods Frameworks */,
+				364569D18AA1C3283B6BAB5D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -480,7 +596,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F5D1D22DF4BE3BAEAEFE40A /* [CP] Embed Pods Frameworks */ = {
+		364569D18AA1C3283B6BAB5D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B75E172AA9E20270823FBAB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -497,29 +630,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Contacts/Pods-Contacts-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		401989AD5DCDF98F835A192F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Contacts-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6B03D2CE186BA8E59BFB3BA3 /* [CP] Check Pods Manifest.lock */ = {
+		8C9309DBC55FAF59F5D6E152 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -541,7 +652,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75476FB7DE815A62DA397C05 /* [CP] Check Pods Manifest.lock */ = {
+		F61C579D0501CB10FD4F64F8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -563,21 +674,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		890AFBC1EF99C4DBC332D932 /* [CP] Embed Pods Frameworks */ = {
+		FC301609CFF9A9A0AF51D1C9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Contacts-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Contacts-ContactsUITests/Pods-Contacts-ContactsUITests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -589,31 +705,51 @@
 			files = (
 				E81FCCE7257179CE00059531 /* GroupViewModel.swift in Sources */,
 				E88E652D257042DC0072C45C /* CoreDataStack.swift in Sources */,
+				E8A6E9DD25910E9E00945324 /* RecoveryPasswordView.swift in Sources */,
+				E8A6E9DF25910EAD00945324 /* RecoveryPasswordViewModel.swift in Sources */,
 				E82613A5256ED2BA008C213C /* FloatButton.swift in Sources */,
+				E89AF168258A7443003F1CAC /* FirestoreService.swift in Sources */,
+				E862CCCC2588FEFC008F5F9B /* RegistrationViewModel.swift in Sources */,
+				E86D5E6A2593B3C300CBD978 /* DocumentDirectory.swift in Sources */,
 				E81FCCE3257179B300059531 /* GroupView.swift in Sources */,
 				E8A599402575BBE500884F3F /* UIAlertController+Extensions.swift in Sources */,
-				E88E6529256FF7090072C45C /* OkButton.swift in Sources */,
+				E862CCCF25890385008F5F9B /* AuthService.swift in Sources */,
 				E81FCCE5257179BF00059531 /* GroupViewController.swift in Sources */,
 				E826139D256EC269008C213C /* ConfigureView.swift in Sources */,
 				79AEDA9523F81AB400B4422A /* FormViewController.swift in Sources */,
 				E8631D50244E1B8F00E8A230 /* Location.swift in Sources */,
 				E81FCCE025715DA600059531 /* GroupButton.swift in Sources */,
 				E826139A256EC1F3008C213C /* ContactListView.swift in Sources */,
+				E89AF166258A6F96003F1CAC /* AuthError.swift in Sources */,
 				E82613A0256EC405008C213C /* ContactListViewModel.swift in Sources */,
+				E86D5E6725938FE800CBD978 /* ManagerContact.swift in Sources */,
 				79AEDAC523F8323000B4422A /* ContactsListTableViewController.swift in Sources */,
 				E88E6527256FD8280072C45C /* CustomTextField.swift in Sources */,
 				E81FCCDC2571319D00059531 /* DetailsViewModel.swift in Sources */,
+				E862CCC52588FC41008F5F9B /* AuthenticationViewModel.swift in Sources */,
 				E82613A8256EEF80008C213C /* FormView.swift in Sources */,
+				E8724E8D2592375600623F7A /* FirestorageService.swift in Sources */,
+				E887F2DB25814946005482F1 /* MapViewModel.swift in Sources */,
 				79AEDA9323F81AB400B4422A /* AppDelegate.swift in Sources */,
+				E8975D642587B314000E6BCF /* Contants.swift in Sources */,
+				E8A6E9DA25910E7900945324 /* RecoveryPasswordViewController.swift in Sources */,
 				E81FCCE92571804800059531 /* GroupTableViewCell.swift in Sources */,
 				E86E3FA524450A7D00D03AA5 /* MapViewController.swift in Sources */,
 				E869711D244A23AA008A29FC /* Message.swift in Sources */,
+				E887F2D92581493C005482F1 /* MapView.swift in Sources */,
 				798FD6D82402BCB9003F1D81 /* ContactTableViewCell.swift in Sources */,
 				E81FCCDE257131BB00059531 /* DetailsView.swift in Sources */,
 				E84DCA1D2435270A00A9EDF4 /* Contacts.xcdatamodeld in Sources */,
 				E82613AA256EEF8A008C213C /* FormViewModel.swift in Sources */,
+				E862CCC12588F8F2008F5F9B /* AuthenticationViewController.swift in Sources */,
+				E862CCC82588FEE6008F5F9B /* RegistrationViewController.swift in Sources */,
+				E8724E8F2592429200623F7A /* Downsampler.swift in Sources */,
 				7960ACAC23F986C700177EC2 /* DetailsViewController.swift in Sources */,
+				E862CCC32588F909008F5F9B /* AuthenticationView.swift in Sources */,
+				E8FC142F258281DE00DA5A3F /* String+Extension.swift in Sources */,
 				E88E652B25700FA80072C45C /* UIView+Extension.swift in Sources */,
+				E8FC14312582913A00DA5A3F /* ViewDetail.swift in Sources */,
+				E862CCCA2588FEF5008F5F9B /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +757,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79AEDAA823F81AB600B4422A /* ContactsTests.swift in Sources */,
+				79AEDAA823F81AB600B4422A /* ContactListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,13 +914,13 @@
 		};
 		79AEDAB823F81AB600B4422A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08A4DC654E362C0A1B8E532A /* Pods-Contacts.debug.xcconfig */;
+			baseConfigurationReference = 85ED094E3EEC32C6A9754111 /* Pods-Contacts.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4FGAJ25MKJ;
 				INFOPLIST_FILE = Contacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -798,13 +934,13 @@
 		};
 		79AEDAB923F81AB600B4422A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8A49A25A3B366DF3EA5ECF2 /* Pods-Contacts.release.xcconfig */;
+			baseConfigurationReference = A62433954F8B8E0614ECE734 /* Pods-Contacts.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4FGAJ25MKJ;
 				INFOPLIST_FILE = Contacts/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -818,7 +954,7 @@
 		};
 		79AEDABB23F81AB600B4422A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AFB753644F1472C490F9CD8 /* Pods-ContactsTests.debug.xcconfig */;
+			baseConfigurationReference = 1AD1C731F644A37DE7F43AA1 /* Pods-ContactsTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -840,7 +976,7 @@
 		};
 		79AEDABC23F81AB600B4422A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6F69C2CAAE8DD0277B8F039 /* Pods-ContactsTests.release.xcconfig */;
+			baseConfigurationReference = 0EAAF3A7C39F82F5AAC7C824 /* Pods-ContactsTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -862,7 +998,7 @@
 		};
 		79AEDABE23F81AB600B4422A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F06DE0FB772015B17698B8F2 /* Pods-Contacts-ContactsUITests.debug.xcconfig */;
+			baseConfigurationReference = 0ECEBBCDEA2D24E86CE9D18E /* Pods-Contacts-ContactsUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -883,7 +1019,7 @@
 		};
 		79AEDABF23F81AB600B4422A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 467BF63F2EA70B0DE2623E9E /* Pods-Contacts-ContactsUITests.release.xcconfig */;
+			baseConfigurationReference = 46B0B48C79A6E8E85DF6ACCB /* Pods-Contacts-ContactsUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

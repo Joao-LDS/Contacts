@@ -7,116 +7,189 @@
 //
 
 import UIKit
+import MessageUI
 
 class DetailsViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var contact: Contact!
     let message = Message() // Usada para trabalhar com o SMS
+    let viewModel: DetailsViewModel
+    var uiview: DetailsView
+    
+    // MARK: - Init
+    
+    init(viewModel: DetailsViewModel) {
+        self.viewModel = viewModel
+        self.uiview = DetailsView()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - View Life Cycle
+    
+    override func loadView() {
+        self.view = uiview
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.imageContact.image = contact.photo as? UIImage
-        self.nameLabel.text = contact.name
-        self.numberPhoneLabel.text = contact.phone
-        self.emailLabel.text = contact.email
-        self.addressLabel.text = contact.address
-        self.imageContact.layer.cornerRadius = 5.0
-        self.imageContact.layer.masksToBounds = true
-        viewWithBorderAndShadow(viewDetails, cornerRadius: 20.0)
-        viewWithBorderAndShadow(viewWithBorderShadow, cornerRadius: 5.0)
+        super.viewWillAppear(true)
+        configureView()
     }
     
-    // MARK: - IBOutlets
-    @IBOutlet weak var imageContact: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var numberPhoneLabel: UILabel!
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var typeLabel: UILabel!
-    @IBOutlet weak var viewDetails: UIView!
-    @IBOutlet weak var viewWithBorderShadow: UIView!
-    @IBOutlet weak var viewName: UIView!
-    @IBOutlet weak var viewNumber: UIView!
-    @IBOutlet weak var viewEmail: UIView!
-    @IBOutlet weak var viewAddress: UIView!
-    @IBOutlet weak var viewType: UIView!
+    // MARK: - Functions
     
-    
-    // MARK: - IBAction
-    @IBAction func mapButton(_ sender: Any) {
-        alertAction()
-    }
-    @IBAction func tel(_ sender: Any) {
-        guard let number = contact.phone else { return }
-        // Faz ligação
-        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-    }
-    @IBAction func sms(_ sender: Any) {
-        if let componentSMS = message.configSMS(contact) {
-            componentSMS.messageComposeDelegate = message // Delegate de componentSMS será a classa Message()
-            present(componentSMS, animated: true, completion: nil)
-        }
-    }
-    
-    func alertAction() {
-        let alert = UIAlertController(title: "Ok", message: "Select an option:", preferredStyle: .actionSheet)
-        let waze = UIAlertAction(title: "Waze", style: .default) { (alert) in
-            self.waze()
-        }
-        let maps = UIAlertAction(title: "Maps", style: .default) { (map) in
-            self.maps()
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alert.addAction(waze)
-        alert.addAction(maps)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func waze() {
-        if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {  // Verifica se o waze está instalado
-            guard let addressContact = contact.address else { return }
-            Location().convertAddressToCordinate(address: addressContact) { (foundLocation) in
-                // Converte as coordenadas em String
-                let latitude = String(describing: foundLocation.location!.coordinate.latitude)
-                let longitude = String(describing: foundLocation.location!.coordinate.longitude)
-                
-                print("\(latitude), \(longitude)")
-                
-                // Cria URL para abrir o waze
-                let url: String = "waze://?ll=\(latitude),\(longitude)&navigate=yes" // Waze a bre nas coordenadas e inicia a navegação
-                print(url)
-                
-                // Abre o Waze
-                UIApplication.shared.open(URL(string: url)!, options: [:], completionHandler: nil) // [:]
-                
-            }
+    func configureView() {
+        let contact = viewModel.contact
+        
+        uiview.imageView.image = UIImage(data: contact.photo!)
+        uiview.nameLabel.text = contact.name
+        
+        if contact.phone != Constants.String.empty {
+            uiview.phoneView.label.text = contact.phone!
+            uiview.phoneView.isHidden = false
+            uiview.callButton.isHidden = false
+            uiview.messageButton.isHidden = false
         } else {
-            let alert = UIAlertController(title: "Error", message: "Waze is not available!", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            alert.addAction(cancel)
-            present(alert, animated: true, completion: nil)
+            uiview.phoneView.isHidden = true
+            uiview.callButton.isHidden = true
+            uiview.messageButton.isHidden = true
         }
+        
+        if contact.address != Constants.String.empty {
+            uiview.addressView.label.text = contact.address
+            uiview.addressView.isHidden = false
+            uiview.localizeButton.isHidden = false
+        } else {
+            uiview.addressView.isHidden = true
+            uiview.localizeButton.isHidden = true
+        }
+        
+        if contact.email != Constants.String.empty {
+            uiview.emailView.label.text = contact.email
+            uiview.emailView.isHidden = false
+            uiview.messageButton.isHidden = false
+        } else {
+            uiview.emailView.isHidden = true
+            uiview.messageButton.isHidden = true
+        }
+        
+        if let groupName = contact.group?.name, groupName != Constants.String.empty {
+            uiview.groupView.label.text = groupName
+            uiview.groupView.isHidden = false
+        } else {
+            uiview.groupView.isHidden = true
+        }
+        
+        uiview.backButton.addTarget(self, action: #selector(self.tappedBack), for: .touchUpInside)
+        uiview.editButton.addTarget(self, action: #selector(self.tappedEdit), for: .touchUpInside)
+        uiview.localizeButton.addTarget(self, action: #selector(self.tappedLocalize), for: .touchUpInside)
+        uiview.callButton.addTarget(self, action: #selector(self.tappedCall), for: .touchUpInside)
+        uiview.messageButton.addTarget(self, action: #selector(self.tappedMessage), for: .touchUpInside)
     }
     
-    func maps() {
-        let map = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "map") as! MapViewController
-        map.contact = contact
-        self.navigationController?.pushViewController(map, animated: true)
+    func showActionSheetForLocalize() {
+        var actions: [UIAlertAction] = []
+        
+        if UIApplication.shared.canOpenURL(URL(string: "waze://")!) {
+            actions.append(UIAlertAction(title: "Waze", style: .default) { _ in
+                self.viewModel.waze()
+            })
+        }
+        actions.append(UIAlertAction(title: "Maps", style: .default) { _ in
+            let viewModel = MapViewModel(address: self.viewModel.contact.address!)
+            let controller = MapViewController(viewModel: viewModel)
+            self.present(controller, animated: true)
+        })
+        
+        let actionSheet = UIAlertController().create(title: nil,
+                                                     message: "Selecione uma opção",
+                                                     preferredStyle: .actionSheet,
+                                                     actions: actions)
+        present(actionSheet, animated: true)
     }
+    
+    func showActionSheetForMessage() {
+        let contact = viewModel.contact
+        var actions: [UIAlertAction] = []
+        
+        if contact.phone != Constants.String.empty {
+            actions.append(UIAlertAction(title: "SMS", style: .default) { _ in
+                self.viewModel.SMS()
+            })
+        }
+        
+        if contact.email != Constants.String.empty {
+            actions.append(UIAlertAction(title: "E-mail", style: .default) { _ in
+                let mailController = self.configureMail()
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailController, animated: true)
+                }
+            })
+        }
+        
+        let actionSheet = UIAlertController().create(title: nil,
+                                                     message: "Selecione uma opção",
+                                                     preferredStyle: .actionSheet,
+                                                     actions: actions)
+        present(actionSheet, animated: true)
+    }
+    
+    func configureMail() -> MFMailComposeViewController {
+        let controller = MFMailComposeViewController()
+        controller.mailComposeDelegate = self
+        controller.setToRecipients([self.viewModel.contact.email!])
+        return controller
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func tappedBack() {
+        dismiss(animated: true)
+    }
+    
+    @objc func tappedEdit() {
+        let viewModel = FormViewModel(contact: self.viewModel.contact)
+        let controller = FormViewController(viewModel: viewModel)
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
+    }
+    
+    @objc func tappedLocalize() {
+        showActionSheetForLocalize()
+    }
+    
+    @objc func tappedCall() {
+        viewModel.call()
+    }
+    
+    @objc func tappedMessage() {
+        showActionSheetForMessage()
+    }
+    
+}
 
+extension DetailsViewController: DetailsViewModelDelegate {
+    func uiapplicationOpen(_ url: URL) {
+        UIApplication.shared.open(url, options: [:])
+    }
     
-    func viewWithBorderAndShadow(_ vw: UIView, cornerRadius: CGFloat) {
-        vw.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
-        vw.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        vw.layer.shadowOpacity = 0.30
-        vw.layer.shadowRadius = 5.0
-        vw.layer.cornerRadius = cornerRadius
+    func presentView(controller: UIViewController) {
+        present(controller, animated: true)
+    }
+}
+
+extension DetailsViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }

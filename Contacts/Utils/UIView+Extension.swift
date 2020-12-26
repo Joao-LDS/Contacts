@@ -15,4 +15,10 @@ extension UIView {
         self.layer.shadowRadius = shadowRadius
         self.layer.shadowOpacity = shadowOpacity
     }
+    
+    func dismissKeyboardWhenTapView() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        addGestureRecognizer(tap)
+    }
 }

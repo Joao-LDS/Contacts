@@ -21,12 +21,16 @@ class FloatButton: UIButton {
     // MARK: - Init
     
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func blackShadowColor() {
+        shadow(shadowColor: UIColor.black.cgColor, shadowRadius: 10, shadowOpacity: 0.5)
     }
     
 }
@@ -41,20 +45,20 @@ extension FloatButton: ConfigureView {
     
     func addConstraints() {
         NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalToConstant: 60),
-            heightAnchor.constraint(equalToConstant: 60),
+            heightAnchor.constraint(equalToConstant: 50),
+            widthAnchor.constraint(equalToConstant: 50),
             
             imageview.centerYAnchor.constraint(equalTo: centerYAnchor),
             imageview.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageview.widthAnchor.constraint(equalToConstant: 30),
-            imageview.heightAnchor.constraint(equalToConstant: 30)
+            imageview.widthAnchor.constraint(equalToConstant: 25),
+            imageview.heightAnchor.constraint(equalToConstant: 25)
         ])
     }
     
     func additionalConfiguration() {
-        backgroundColor = UIColor(named: "second")
-        layer.cornerRadius = 30
-        shadow(shadowColor: UIColor(named: "second")!.cgColor, shadowRadius: 10, shadowOpacity: 0.5)
+        backgroundColor = Constants.Color.main
+        layer.cornerRadius = 25
+        shadow(shadowColor: Constants.Color.main!.cgColor, shadowRadius: 10, shadowOpacity: 0.5)
     }
     
     

@@ -25,19 +25,22 @@ class GroupViewModel: FormViewModelDelegate {
     
     // MARK: - Func
     func addGroupWith(name: String) {
-        let group = Group(context: coreData.context)
-        group.name = name
-        coreData.save()
-        loadGroups()
+        if name != Constants.String.empty {
+            let group = Group(context: coreData.context)
+            group.name = name
+            coreData.save()
+            loadGroups()
+        }
     }
     
     func loadGroups() {
         self.groups = coreData.fetchGroups() ?? []
     }
     
-    func deleteGroup(at indexPath: IndexPath) {
-        coreData.deleteObject(groups[indexPath.row])
-        self.groups.remove(at: indexPath.row)
+    func editGroup(At index: Int, with name: String) {
+        let group = groups[index]
+        group.name = name
+        coreData.save()
     }
     
 }

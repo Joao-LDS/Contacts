@@ -9,7 +9,7 @@
 import UIKit
 
 enum PlaceHolder: String {
-    case Nome, Número, Email, Endereço, Grupo
+    case Nome, Número, Email, Endereço, Grupo, Senha
 }
 
 class CustomTextField: UIView {
@@ -87,11 +87,12 @@ extension CustomTextField: ConfigureView {
     func additionalConfiguration() {
         backgroundColor = .white
         
-        textField.defaultTextAttributes = [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray]
-        textField.attributedPlaceholder = NSAttributedString(string: placeHolder.rawValue, attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
-        imageView.image = UIImage(named: placeHolder.rawValue)
+        textField.defaultTextAttributes = [.font: Constants.Font.avenir18!, .foregroundColor: UIColor.systemGray]
+        let placeHolder = self.placeHolder.rawValue.styleText(Constants.Font.avenir18!)
+        textField.attributedPlaceholder = placeHolder
+        imageView.image = UIImage(named: self.placeHolder.rawValue)
         
-        lineView.backgroundColor = UIColor(named: "second")
+        lineView.backgroundColor = Constants.Color.main
     }
     
 }

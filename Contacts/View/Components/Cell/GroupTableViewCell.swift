@@ -66,10 +66,10 @@ extension GroupTableViewCell: ConfigureView {
     }
     
     func additionalConfiguration() {
-        nameLbl.font = UIFont(name: "Avenir", size: 28)
-        nameLbl.textColor = UIColor(named: "second")
+        nameLbl.font = Constants.Font.avenir28
+        nameLbl.textColor = Constants.Color.main
         
-        arrowView.image = UIImage(named: "arrow")
+        arrowView.image = Constants.Image.arrow
     }
     
     

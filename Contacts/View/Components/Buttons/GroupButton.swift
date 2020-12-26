@@ -62,15 +62,14 @@ extension GroupButton: ConfigureView {
     }
     
     func additionalConfiguration() {
-        iconView.image = UIImage(named: "Grupo")
-    
-        let attr = NSAttributedString(string: "Grupo", attributes: [.font: UIFont(name: "Avenir", size: 18)!, .foregroundColor: UIColor.systemGray])
-        setAttributedTitle(attr, for: .normal)
+        iconView.image = Constants.Image.group
+        
+        setAttributedTitle("Grupo".styleText(Constants.Font.avenir18!), for: .normal)
         setTitleColor(.lightGray, for: .normal)
         contentHorizontalAlignment = .left
         titleEdgeInsets.left = 42
         
-        arrowView.image = UIImage(named: "arrow")
+        arrowView.image = Constants.Image.arrow
     }
     
     

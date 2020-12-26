@@ -81,13 +81,13 @@ extension ContactTableViewCell: ConfigureView {
     func additionalConfiguration() {
         view.backgroundColor = .white
         view.layer.cornerRadius = 50
-        view.shadow(shadowColor: UIColor(named: "second")!.cgColor, shadowRadius: 5, shadowOpacity: 0.4)
+        view.shadow(shadowColor: Constants.Color.main!.cgColor, shadowRadius: 5, shadowOpacity: 0.4)
         
         photoView.layer.cornerRadius = 35
         photoView.layer.masksToBounds = true
         
-        nameLbl.font = UIFont(name: "Avenir", size: 28)
-        nameLbl.textColor = UIColor(named: "second")
+        nameLbl.font = Constants.Font.avenir28
+        nameLbl.textColor = Constants.Color.main
     }
     
     

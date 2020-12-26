@@ -9,6 +9,8 @@ target 'Contacts' do
 
 pod 'Firebase/Auth'	
 pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
+pod 'FirebaseFirestoreSwift'
 
   target 'ContactsTests' do
     inherit! :search_paths
