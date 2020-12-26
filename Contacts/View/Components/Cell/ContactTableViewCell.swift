@@ -88,6 +88,8 @@ extension ContactTableViewCell: ConfigureView {
         
         nameLbl.font = Constants.Font.avenir28
         nameLbl.textColor = Constants.Color.main
+        
+        selectionStyle = .none
     }
     
     
