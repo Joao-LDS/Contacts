@@ -40,13 +40,13 @@
 - ViewCode
 - MVVM
 
-### Como executar
+## Como executar
 
-# Ter o CocoaPods 1.10+ e Xcode 11+
+- Ter o CocoaPods 1.10+ e Xcode 11+
 
-# Cone este repositório
+- Cone este repositório
 $ git clone <https://github.com/Joao-LDS/Contacts.git>
 
-# Abra o file Contacts.xcworkspace
+- Abra o file Contacts.xcworkspace
 
-# Buildar e executar no device ou simulador
+- Buildar e executar no device ou simulador
