@@ -1,6 +1,6 @@
 # Contacts
 
-<p alig="center">App de agenda para guardar seus contatos mais importantes no seu iPhone e na nuvem</p>
+<p alig="center">App de agenda para guardar seus contatos mais importantes no seu iPhone e na nuvem.</p>
 
 
 <h4 align="center">
@@ -9,21 +9,20 @@
 
 
 ### Features
-- [X] Registro de usuários
-- [X] Autenticação de usuários
-- [X] Reset de senha
-- [X] Gravar/editar Contato no device
-- [X] Gravar/editar Contato no Firestore
-- [X] Gravar/editar foto do Contato no Firestorage
-- [X] Buscar Contato no device
-- [X] Buscar Contato no Firestore
-- [X] Ligação, SMS, Waze e Maps integrados ao app
-- [X] Buscar foto do Contato no Firestorage
-- [ ] Gerenciar dados dos usuários no Core Data
-- [ ] Unit Test e UI Test
+* Registro de usuários ✅
+* Autenticação de usuários ✅
+* Reset de senha ✅
+* Gravar/editar Contato no device ✅
+* Gravar/editar Contato no Firestore ✅
+* Gravar/editar foto do Contato no Firestorage ✅
+* Buscar Contato no device ✅
+* Buscar Contato no Firestore ✅
+* Ligação, SMS, Waze e Maps integrados ao app ✅
+* Buscar foto do Contato no Firestorage ✅
+* Gerenciar dados dos usuários no Core Data
+* Unit Test e UI Test
 
-<a href="https://youtu.be/video_id" title="video text"><img src="/Contacts/Support/Demo/auth-demo.gif" width="280" height="580"></a>
-<a href="https://youtu.be/video_id" title="video text"><img src="/Contacts/Support/Demo/use-demo.gif" width="280" height="580"></a>
+<img src="/Contacts/Support/Demo/auth-demo.gif" width="220" height="460"> <img src="/Contacts/Support/Demo/use-demo.gif" width="220" height="460"> <img src="/Contacts/Support/Demo/maps-demo.gif" width="220" height="460">
 
 
 ### Tecnologias
@@ -36,7 +35,7 @@
 - ViewCode
 - MVVM
 
-## Como executar
+### Como executar
 
 - Ter o CocoaPods 1.10+ e Xcode 11+
 
