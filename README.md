@@ -1,6 +1,5 @@
 # Contacts
 
-## Descrição
 <p alig="center">App de agenda para guardar seus contatos mais importantes no seu iPhone e na nuvem</p>
 
 
@@ -23,9 +22,6 @@
 - [ ] Gerenciar dados dos usuários no Core Data
 - [ ] Unit Test e UI Test
 
-
-
-
 <a href="https://youtu.be/video_id" title="video text"><img src="/Contacts/Support/Demo/auth-demo.gif" width="280" height="580"></a>
 <a href="https://youtu.be/video_id" title="video text"><img src="/Contacts/Support/Demo/use-demo.gif" width="280" height="580"></a>
 
@@ -44,7 +40,7 @@
 
 - Ter o CocoaPods 1.10+ e Xcode 11+
 
-- Cone este repositório
+- Clone este repositório
 $ git clone <https://github.com/Joao-LDS/Contacts.git>
 
 - Abra o file Contacts.xcworkspace
